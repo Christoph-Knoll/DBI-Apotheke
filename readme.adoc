@@ -9,24 +9,24 @@
   "Wirkstoff":
     [
       {
-        "name": "A", "amount": 50, "unit": Unit.Ml
+        "name": "A", "amount": 50, "unit": "Unit.ML"
       },
       {
-        "name": "B", "amount": 15, "unit": Unit.Ml
+        "name": "B", "amount": 15, "unit": "Unit.ML"
       }
     ],
-  "State": State.Liquid,
+  "State": "State.Liquid",
   "Types": 
   [
     {
       "PZN": 1,
       "Menge": 100,
-      "Unit": "ml"
+      "Unit": "Unit.ML"
     },
     {
       "PZN": 2,
       "Menge": 200,
-      "Unit": "ml"
+      "Unit": "Unit.ML"
     }
   ]
 },
@@ -36,20 +36,34 @@
   "Wirkstoff":
     [
       {
-        "name": "A", "amount": 25, "unit": Unit.Mg
+        "name": "A", "amount": 25, "unit": "Unit.MG"
       },
       {
-        "name": "C", "amount": 15, "unit": Unit.Ml
+        "name": "C", "amount": 15, "unit": "Unit.ML"
       }
     ],
-  "State": State.Solid,
+  "State": "State.Solid",
   "Types": 
   [
     {
       "PZN": 3,
       "Menge": 50,
-      "Unit": Unit.Mg,
+      "Unit": "Unit.MG",
       "Pieces": 15
     }
   ]
 }]
+----
+
+[source, java]
+----
+enum Unit {
+    MG,
+    ML
+}
+
+enum State {
+    Solid,
+    Liquid
+}
+----
