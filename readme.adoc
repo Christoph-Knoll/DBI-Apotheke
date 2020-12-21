@@ -1,0 +1,3 @@
+= DBI Apotheke: DBI Microproject
+
+A simple project created during DBI-Lessons utilizing MongoDB and Neo4j.
