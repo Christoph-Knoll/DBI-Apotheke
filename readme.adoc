@@ -1,3 +1,55 @@
-= DBI Apotheke: DBI Microproject
+= DBI - Apotheke
+:source-highlighter: highlightjs
 
-A simple project created during DBI-Lessons utilizing MongoDB and Neo4j.
+[source, json]
+----
+[{
+  "Name": "Aspirin Complex",
+  "Brand": "Aspirin",
+  "Wirkstoff":
+    [
+      {
+        "name": "A", "amount": 50, "unit": Unit.Ml
+      },
+      {
+        "name": "B", "amount": 15, "unit": Unit.Ml
+      }
+    ],
+  "State": State.Liquid,
+  "Types": 
+  [
+    {
+      "PZN": 1,
+      "Menge": 100,
+      "Unit": "ml"
+    },
+    {
+      "PZN": 2,
+      "Menge": 200,
+      "Unit": "ml"
+    }
+  ]
+},
+{
+  "Name": "Super",
+  "Brand": "Mega",
+  "Wirkstoff":
+    [
+      {
+        "name": "A", "amount": 25, "unit": Unit.Mg
+      },
+      {
+        "name": "C", "amount": 15, "unit": Unit.Ml
+      }
+    ],
+  "State": State.Solid,
+  "Types": 
+  [
+    {
+      "PZN": 3,
+      "Menge": 50,
+      "Unit": Unit.Mg,
+      "Pieces": 15
+    }
+  ]
+}]
