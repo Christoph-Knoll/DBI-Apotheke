@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+    mongodb:
+        image: mongo:4.4.0-bionic
+        container_name: mongodb
+        hostname: mongodb
+        volumes:
+            - data:/data/mongodb
+        ports:
+            - "27017:27017"
+        healthcheck:
+            test: test $$(echo "rs.initiate().ok || rs.status().ok" | mongo --quiet) -eq 1
+            interval: 10s
+            start_period: 30s
+        command: mongod --replSet foo
+        
+volumes:
+    data:
+        driver: local
