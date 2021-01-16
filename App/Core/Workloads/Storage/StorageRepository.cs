@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DBI_Apotheke.Core.Workloads.Storage
 {
-    public class RecipeRepository : GenericRepository<Storage>, IRecipeRepository
+    public class StorageRepository : GenericRepository<Storage>, IStorageRepository
     {
         public RecipeRepository(ITransactionProvider transactionProvider, IDatabaseProvider databaseProvider) : base(
 transactionProvider, databaseProvider)

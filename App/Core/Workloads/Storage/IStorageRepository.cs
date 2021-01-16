@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DBI_Apotheke.Core.Workloads.Storage
 {
-    public interface IRecipeRepository: IGenericRepository<Storage>
+    public interface IStorageRepository: IGenericRepository<Storage>
     {
     }
 }

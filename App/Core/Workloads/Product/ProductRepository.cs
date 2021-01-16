@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace DBI_Apotheke.Core.Workloads.Product
 {
-    public class StorageRepository : GenericRepository<Product>, IStorageRepository
+    public class ProductRepository : GenericRepository<Product>, IProductRepository
     {
-        public StorageRepository(ITransactionProvider transactionProvider, IDatabaseProvider databaseProvider) : base(
+        public ProductRepository(ITransactionProvider transactionProvider, IDatabaseProvider databaseProvider) : base(
 transactionProvider, databaseProvider)
         {
         }
