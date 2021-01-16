@@ -9,10 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using DBI_Apotheke.Core.Util;
-using DBI_Apotheke.Core.Workloads.ProductInfo;
-using DBI_Apotheke.Core.Workloads.Product;
-using DBI_Apotheke.Core.Workloads.Storage;
-using DBI_Apotheke.Core.Workloads.Recipe;
+using DBI_Apotheke.Core.Workloads.ProductInfos;
+using DBI_Apotheke.Core.Workloads.Products;
+using DBI_Apotheke.Core.Workloads.Storages;
+using DBI_Apotheke.Core.Workloads.Recipes;
 
 namespace App
 {
