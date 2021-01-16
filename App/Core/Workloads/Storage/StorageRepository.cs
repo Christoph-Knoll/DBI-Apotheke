@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DBI_Apotheke.Core.Workloads.Product
+namespace DBI_Apotheke.Core.Workloads.Storage
 {
-    public class StorageRepository : GenericRepository<Product>, IStorageRepository
+    public class RecipeRepository : GenericRepository<Storage>, IRecipeRepository
     {
-        public StorageRepository(ITransactionProvider transactionProvider, IDatabaseProvider databaseProvider) : base(
+        public RecipeRepository(ITransactionProvider transactionProvider, IDatabaseProvider databaseProvider) : base(
 transactionProvider, databaseProvider)
         {
         }
