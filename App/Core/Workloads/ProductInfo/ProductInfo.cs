@@ -10,7 +10,6 @@ namespace DBI_Apotheke.Core.Workloads.ProductInfo
     {
         public string Name { get; set; } = default!;
         public string Brand { get; set; } = default!;
-
         public List<Ingredient> Ingredients { get; set; } = default!;
     }
 }

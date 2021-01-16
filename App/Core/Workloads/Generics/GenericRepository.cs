@@ -56,9 +56,9 @@ transactionProvider, databaseProvider)
             return await base.Query().Where((x) => query(x)).ToListAsync();
         }
 
-        public Task<(ObjectId ItemId, List<ObjectId>? DetailIds)> GetItemWithDetails(ObjectId id)
-        {
-            throw new NotImplementedException();
+    //    public Task<(ObjectId ItemId, List<ObjectId>? DetailIds)> GetItemWithDetails(ObjectId id)
+    //    {
+    //        throw new NotImplementedException();
     //        IDictionary<ObjectId, List<ObjectId>?> postsWithComments = await QueryIncludeDetail<Comment>(
     //    this._commentRepository,
     //    c => c.PostId, p => p.Id == postId)
@@ -70,6 +70,6 @@ transactionProvider, databaseProvider)
     //        }
 
     //        return postsWithComments.First().ToTuple();
-        }
+    //    }
     }
 }
