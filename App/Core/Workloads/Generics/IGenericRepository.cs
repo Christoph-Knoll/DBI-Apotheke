@@ -19,7 +19,7 @@ namespace DBI_Apotheke.Core.Workloads.Generics
 
         Task<IReadOnlyCollection<T>> Query(Predicate<T> query);
 
-        Task<(ObjectId ItemId, List<ObjectId>? DetailIds)> GetItemWithDetails(ObjectId id)
+        Task<(ObjectId ItemId, List<ObjectId>? DetailIds)> GetItemWithDetails(ObjectId id);
 
     }
 }
