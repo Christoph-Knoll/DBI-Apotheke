@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace DBI_Apotheke.Model.Product
 {
-    public class ProductDTO
+    public sealed class CreateProductRequest
     {
-        public string Id { get; set; } = default!;
         public int PZN { get; set; } = default!;
         public double Price { get; set; } = default!;
         public int Amount { get; set; } = default!;

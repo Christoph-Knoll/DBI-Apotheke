@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace DBI_Apotheke.Model.Ingredient
 {
-    public class IngredientDTO
+    public sealed class CreateIngredientRequest
     {
-        public string Id { get; set; } = default!;
         public string Name { get; set; } = default!;
         public int Amount { get; set; } = default!;
         public Unit Unit { get; set; }

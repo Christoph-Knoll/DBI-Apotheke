@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace DBI_Apotheke.Model.Recipe
 {
-    public class RecipeDTO
+    public sealed class CreateRecipeRequest
     {
-        public string Id { get; set; } = default!;
         public string Name { get; set; } = default!;
         public string Address { get; set; } = default!;
         public string Issuer { get; set; } = default!;
