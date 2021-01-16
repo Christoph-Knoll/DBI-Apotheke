@@ -55,5 +55,10 @@ transactionProvider, databaseProvider)
         {
             return await base.Query().Where((x) => query(x)).ToListAsync();
         }
+
+        public Task<(ObjectId ItemId, List<ObjectId>? DetailIds)> GetItemWithDetails(ObjectId id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
