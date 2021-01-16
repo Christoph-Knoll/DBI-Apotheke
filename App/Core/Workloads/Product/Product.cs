@@ -13,7 +13,7 @@ namespace DBI_Apotheke.Core.Workloads.Product
         public int PZN { get; set; } = default!;
         public double Price { get; set; } = default!;
         public int Amount { get; set; } = default!;
-        public Unit Unit { get; set; } = default!;
-        public ObjectId ProductInfoId { get; set; } = default!;
+        public Unit Unit { get; set; }
+        public ObjectId ProductInfoId { get; set; }
     }
 }
