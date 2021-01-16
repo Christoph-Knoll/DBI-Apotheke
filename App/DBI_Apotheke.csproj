@@ -20,6 +20,9 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Core\Workloads\Storage\" />
+    <Folder Include="Core\Workloads\Product\" />
+    <Folder Include="Model\" />
   </ItemGroup>
 
 </Project>
