@@ -6,12 +6,14 @@ import {RouterModule} from '@angular/router';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RedeemRecipeComponent } from './redeem-recipe/redeem-recipe.component';
+import { PrdouctsComponent } from './prdoucts/prdoucts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddRecipeComponent,
-    RedeemRecipeComponent
+    RedeemRecipeComponent,
+    PrdouctsComponent
   ],
     imports: [
         BrowserModule,
