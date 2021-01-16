@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DBI_Apotheke.Core.Workloads.Product
+namespace DBI_Apotheke.Core.Workloads.Products
 {
-    public class Product : EntityBase
+    public sealed class Product : EntityBase
     {
         public int PZN { get; set; } = default!;
         public double Price { get; set; } = default!;

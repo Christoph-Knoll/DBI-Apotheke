@@ -9,8 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using DBI_Apotheke.Core.Util;
-using DBI_Apotheke.Core.Workloads.Comments;
-using DBI_Apotheke.Core.Workloads.Posts;
 
 namespace App
 {

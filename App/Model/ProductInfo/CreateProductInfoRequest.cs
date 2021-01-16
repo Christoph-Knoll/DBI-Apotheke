@@ -1,9 +1,10 @@
-﻿using System;
+﻿using DBI_Apotheke.Core.Workloads.ProductInfos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DBI_Apotheke.Model.ProductInfo
+namespace DBI_Apotheke.Model.ProductInfos
 {
     public sealed class CreateProductInfoRequest
     {

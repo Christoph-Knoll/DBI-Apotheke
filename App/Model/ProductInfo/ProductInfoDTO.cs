@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DBI_Apotheke.Core.Workloads.ProductInfos;
 
-namespace DBI_Apotheke.Model.ProductInfo
+namespace DBI_Apotheke.Model.ProductInfos
 {
     public class ProductInfoDTO
     {

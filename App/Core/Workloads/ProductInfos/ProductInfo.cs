@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DBI_Apotheke.Core.Workloads.ProductInfo
+namespace DBI_Apotheke.Core.Workloads.ProductInfos
 {
-    public class ProductInfo : EntityBase
+    public sealed class ProductInfo : EntityBase
     {
         public string Name { get; set; } = default!;
         public string Brand { get; set; } = default!;

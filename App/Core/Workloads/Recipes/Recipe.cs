@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DBI_Apotheke.Core.Workloads.Recipe
+namespace DBI_Apotheke.Core.Workloads.Recipes
 {
-    public class Recipe : EntityBase
+    public sealed class Recipe : EntityBase
     {
         public string Name { get; set; } = default!;
         public string Address { get; set; } = default!;

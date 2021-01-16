@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using DBI_Apotheke.Core.Workloads.Generics;
 
-namespace DBI_Apotheke.Core.Workloads.ProductInfo
+namespace DBI_Apotheke.Core.Workloads.ProductInfos
 {
     public interface IProductInfoRepository : IGenericRepository<ProductInfo>
     {

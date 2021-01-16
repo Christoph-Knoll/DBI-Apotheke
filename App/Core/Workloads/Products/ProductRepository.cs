@@ -3,15 +3,14 @@ using LeoMongo.Database;
 using LeoMongo.Transaction;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DBI_Apotheke.Core.Workloads.ProductInfo
+namespace DBI_Apotheke.Core.Workloads.Products
 {
-    public class ProductInfoRepository : GenericRepository<ProductInfo>
+    public class StorageRepository : GenericRepository<Product>, IStorageRepository
     {
-        public ProductInfoRepository(ITransactionProvider transactionProvider, IDatabaseProvider databaseProvider) : base(
+        public StorageRepository(ITransactionProvider transactionProvider, IDatabaseProvider databaseProvider) : base(
 transactionProvider, databaseProvider)
         {
         }
