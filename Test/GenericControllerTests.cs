@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DBI_Apotheke.Core.Util;
 using DBI_Apotheke.Core.Workloads.Generics;
-using DBI_Apotheke.Core.Workloads.ProductInfo;
+using DBI_Apotheke.Core.Workloads.ProductInfos;
 using FluentAssertions;
 using MongoDB.Bson;
 using NSubstitute;
@@ -36,13 +36,13 @@ namespace MongoDBDemoApp.Test
                 Ingredients = list,
                 Name = "AspirinComplex"
             };
-            var repoMock = Substitute.For<IGenericRepository<ProductInfo>>();
+            var repoMock = Substitute.For<IProductInfoRepository>();
             repoMock.GetItemById(Arg.Any<ObjectId>()).Returns(ci => new ProductInfo
             {
                 Id = ci.Arg<ObjectId>()
             });
-            await repoMock.InsertItem(productInfo1);
-
+            var rs = await repoMock.InsertItem(productInfo1);
+            
             await repoMock.Received(1).InsertItem(Arg.Any<ProductInfo>());
             
             var result = await repoMock.GetItemById(productInfo1.Id);
