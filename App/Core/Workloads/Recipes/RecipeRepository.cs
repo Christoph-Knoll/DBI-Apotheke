@@ -1,4 +1,5 @@
 ﻿using DBI_Apotheke.Core.Workloads.Generics;
+using DBI_Apotheke.Core.Workloads.Products;
 using LeoMongo.Database;
 using LeoMongo.Transaction;
 using System;
@@ -14,5 +15,16 @@ namespace DBI_Apotheke.Core.Workloads.Recipes
 transactionProvider, databaseProvider)
         {
         }
+
+        public double GetTotalPrice(List<Product> products)
+        {
+            double totalPrice = 0;
+
+            products.ForEach(p => totalPrice += p.Price);
+
+            return totalPrice;
+        }
+
+
     }
 }
