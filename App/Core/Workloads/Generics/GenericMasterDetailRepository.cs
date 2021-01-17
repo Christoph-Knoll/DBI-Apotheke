@@ -30,7 +30,7 @@ namespace DBI_Apotheke.Core.Workloads.Generics
         {
             IDictionary<ObjectId, List<ObjectId>?> itemWithDetails = await QueryIncludeDetail<D>(
         this._detailRepository,
-        c => foreignKey(c), p => p.Id == id)
+        c => foreignKeySelector(c), p => p.Id == id)
     .ToDictionaryAsync();
             if (itemWithDetails.Count == 0
                 || itemWithDetails.Keys.All(p => p != id))
