@@ -8,5 +8,6 @@ namespace DBI_Apotheke.Core.Workloads.Products
 {
     public interface IProductRepository: IGenericRepository<Product>
     {
+        Task<Product> GetByPzn(int pzn);
     }
 }
