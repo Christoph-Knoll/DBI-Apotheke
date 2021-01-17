@@ -38,8 +38,8 @@ export class AddRecipeComponent implements OnInit {
     this.recipe.issuer = this.issuer;
     this.recipe.pzns = this.values;
     console.log(this.recipe);
-    this.recipeService.save(this.recipe);
-  }
+    this.recipeService.save(this.recipe).toPromise();
+    }
 
   customTrackBy(index: number, obj: any): any {
     return index;
