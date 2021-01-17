@@ -1,22 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
+
 
 import { AppComponent } from './app.component';
 import {RouterModule} from '@angular/router';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RedeemRecipeComponent } from './redeem-recipe/redeem-recipe.component';
-import { PrdouctsComponent } from './prdoucts/prdoucts.component';
+import { ProductsComponent } from './prdoucts/products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddRecipeComponent,
     RedeemRecipeComponent,
-    PrdouctsComponent,
+    ProductsComponent,
     ProductDetailsComponent
   ],
   imports: [
@@ -24,7 +26,8 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     HttpClientModule,
     RouterModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
