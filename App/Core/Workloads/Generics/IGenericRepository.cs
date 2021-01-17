@@ -18,8 +18,5 @@ namespace DBI_Apotheke.Core.Workloads.Generics
         #endregion
 
         Task<IReadOnlyCollection<T>> Query(Predicate<T> query);
-
-        //Task<(ObjectId ItemId, List<ObjectId>? DetailIds)> GetItemWithDetails(ObjectId id);
-
     }
 }
