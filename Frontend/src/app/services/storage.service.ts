@@ -10,7 +10,6 @@ import {IStorage} from '../contracts/IStorage';
 export class StorageService extends GenericHttpService<IStorage, number> {
 
   constructor(protected http: HttpClient) {
-    // #TODO Add path
     super(http, `${environment.api.baseUrl}/storage`);
   }
 }
