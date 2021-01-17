@@ -6,6 +6,8 @@ export interface IIngredient{
 }
 
 export enum Unit {
-  MG,
-  ML,
+  Stk,
+  g,
+  mg,
+  ml,
 }

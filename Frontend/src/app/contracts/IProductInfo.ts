@@ -9,7 +9,7 @@ export interface IProductInfo{
 
 }
 
-enum State{
+export enum State{
   Solid,
   Liquid
 }
