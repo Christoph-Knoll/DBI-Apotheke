@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DBI_Apotheke.Core.Workloads.Products
 {
-    interface IProductService : IServiceBase<Product>
+    public interface IProductService : IServiceBase<Product>
     {
         Task<Product> InsertItem(ProductInfo productInfo, int pzn, double price, int amount, Unit unit);
 
