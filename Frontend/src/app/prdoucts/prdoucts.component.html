@@ -21,4 +21,26 @@
     </div>
   </div>
 </nav>
+<table class="table">
+  <thead>
+  <tr>
+    <th><abbr title="Pharmazentralnummer">PZN</abbr></th>
+    <th>Produktname</th>
+    <th>Inhalt</th>
+    <th>Preis</th>
+    <th>Noch übrig</th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let product of products">
+    <tr *ngIf="getProductInfoById(product.productInfoId) != null">
+      <td>{{product.pzn}}</td>
+      <td>{{getProductInfoById(product.productInfoId).name}}</td>
+      <td>{{product.amount}}&nbsp{{product.unit}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product}}</td>
+    </tr>
+  </ng-container>
+  </tbody>
 
+</table>
