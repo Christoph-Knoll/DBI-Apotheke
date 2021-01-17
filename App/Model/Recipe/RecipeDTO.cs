@@ -12,5 +12,6 @@ namespace DBI_Apotheke.Model.Recipe
         public string Address { get; set; } = default!;
         public string Issuer { get; set; } = default!;
         public List<int> PZNs { get; set; } = default!;
+        public double PriceSum { get; set; } = default;
     }
 }
