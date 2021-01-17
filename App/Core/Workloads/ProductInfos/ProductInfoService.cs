@@ -29,5 +29,8 @@ namespace DBI_Apotheke.Core.Workloads.ProductInfos
 
             return this._repository.InsertItem(productInfo);
         }
+
+        public Task<IReadOnlyCollection<ProductInfo>> GetByIngredient(string ingredientName) =>
+            _repository.GetByIngredient(ingredientName);
     }
 }

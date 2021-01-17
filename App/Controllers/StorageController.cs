@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DBI_Apotheke.Core.Workloads.Storages;
 using DBI_Apotheke.Model.Storage;
 
 namespace DBI_Apotheke.Controllers
@@ -42,6 +41,19 @@ namespace DBI_Apotheke.Controllers
                 return BadRequest();
             }
 
+            return Ok(this._mapper.Map<Storage>(storage));
+        }
+        
+        /// <summary>
+        ///     Returns the Storage identified by its PZN.
+        /// </summary>
+        /// <param name="pzn">PZN of Storage</param>
+        /// <returns>a Storage</returns>
+        [HttpGet]
+        [Route("pzn")]
+        public async Task<ActionResult<StorageDTO>> GetByPZN(int pzn)
+        {
+            var storage = await this._service.GetByPzn(pzn);
             return Ok(this._mapper.Map<Storage>(storage));
         }
 

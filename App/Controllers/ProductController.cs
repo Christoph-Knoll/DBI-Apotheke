@@ -45,6 +45,19 @@ namespace DBI_Apotheke.Controllers
 
             return Ok(this._mapper.Map<Product>(product));
         }
+        
+        /// <summary>
+        ///     Returns the Product identified by its PZN.
+        /// </summary>
+        /// <param name="pzn">PZN of Product</param>
+        /// <returns>a Product</returns>
+        [HttpGet]
+        [Route("pzn")]
+        public async Task<ActionResult<ProductDTO>> GetByPZN(int pzn)
+        {
+            var storage = await this._service.GetByPzn(pzn);
+            return Ok(this._mapper.Map<Product>(storage));
+        }
 
         /// <summary>
         ///     Returns all Products.

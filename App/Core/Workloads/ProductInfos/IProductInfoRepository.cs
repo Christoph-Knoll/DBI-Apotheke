@@ -10,5 +10,6 @@ namespace DBI_Apotheke.Core.Workloads.ProductInfos
 {
     public interface IProductInfoRepository : IGenericRepository<ProductInfo>
     {
+        Task<IReadOnlyCollection<ProductInfo>> GetByIngredient(string ingredientName);
     }
 }

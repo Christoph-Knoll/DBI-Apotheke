@@ -13,5 +13,7 @@ namespace DBI_Apotheke.Core.Workloads.Products
     {
         Task<Product> InsertItem(ProductInfo productInfo, int pzn, double price, int amount, Unit unit);
 
+        Task<Product> GetByPzn(int pzn);
+
     }
 }

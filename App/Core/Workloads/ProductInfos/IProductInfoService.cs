@@ -11,5 +11,7 @@ namespace DBI_Apotheke.Core.Workloads.ProductInfos
     {
         Task<ProductInfo> InsertItem(string name, string brand, IEnumerable<Ingredient> ingredients);
 
+        Task<IReadOnlyCollection<ProductInfo>> GetByIngredient(string ingredientName);
+
     }
 }

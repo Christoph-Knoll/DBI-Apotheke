@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DBI_Apotheke.Core.Workloads.Products;
 
 namespace DBI_Apotheke.Controllers
 {
@@ -42,6 +43,25 @@ namespace DBI_Apotheke.Controllers
             }
 
             return Ok(this._mapper.Map<ProductInfo>(productInfo));
+        }
+        
+        /// <summary>
+        ///     Returns the ProductInfo identified by a Ingredient it contains.
+        /// </summary>
+        /// <param name="ingredientName">Name of ingredient</param>
+        /// <returns>a ProductInfo</returns>
+        [HttpGet]
+        [Route("ingredient")]
+        public async Task<ActionResult<IReadOnlyCollection<ProductInfo>>> GetByIngredientName(string ingredientName)
+        {
+            if (string.IsNullOrWhiteSpace(ingredientName))
+            {
+                return BadRequest();
+            }
+
+            IReadOnlyCollection<ProductInfo> productInfos = await this._service.GetByIngredient(ingredientName);
+
+            return Ok(this._mapper.Map<List<ProductInfoDTO>>(productInfos));
         }
 
         /// <summary>
