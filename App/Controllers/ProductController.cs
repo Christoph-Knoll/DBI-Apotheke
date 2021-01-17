@@ -86,7 +86,7 @@ namespace DBI_Apotheke.Controllers
         {
             using var transaction = await this._transactionProvider.BeginTransaction();
 
-            var productInfo = await _productInfoService.GetItemById(request.ProductInfoId);
+            var productInfo = await _productInfoService.GetItemById(new ObjectId(request.ProductInfoId));
 
             if (productInfo == null)
             {
