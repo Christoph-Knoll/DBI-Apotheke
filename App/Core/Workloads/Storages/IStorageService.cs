@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DBI_Apotheke.Core.Workloads.Storages
 {
-    interface IStorageService: IServiceBase<Storage>
+    public interface IStorageService: IServiceBase<Storage>
     {
         Task<Storage> InsertItem(int pzn, int amount, string storageSite);
     }
