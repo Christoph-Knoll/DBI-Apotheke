@@ -15,7 +15,7 @@ export abstract class GenericHttpService<T, ID> implements HttpCrudOperations<T,
     }
 
     getAll(): Observable<T[]> {
-        return this.http.get<T[]>(this.base);
+        return this.http.get<T[]>(this.base + '/all');
     }
 
     save(t: T): Observable<T> {

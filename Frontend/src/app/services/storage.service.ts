@@ -11,6 +11,6 @@ export class StorageService extends GenericHttpService<IStorage, number> {
 
   constructor(protected http: HttpClient) {
     // #TODO Add path
-    super(http, `${environment.api.baseUrl}/`);
+    super(http, `${environment.api.baseUrl}/storage`);
   }
 }

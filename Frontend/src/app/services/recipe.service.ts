@@ -10,7 +10,6 @@ import {IRecipe} from '../contracts/IRecipe';
 export class RecipeService extends GenericHttpService<IRecipe, number> {
 
   constructor(protected http: HttpClient) {
-    // #TODO Add path
-    super(http, `${environment.api.baseUrl}/`);
+    super(http, `${environment.api.baseUrl}/recipe`);
   }
 }
