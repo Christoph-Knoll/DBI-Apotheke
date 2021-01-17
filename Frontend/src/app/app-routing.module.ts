@@ -9,10 +9,8 @@ import {ProductDetailsComponent} from './product-details/product-details.compone
 const routes: Routes = [
   { path: 'addRecipe', component: AddRecipeComponent },
   { path: 'redeemRecipe', component: RedeemRecipeComponent},
-  { path: 'products',  children: [
-      { path: '', component: PrdouctsComponent},
-      { path: ':id', component: ProductDetailsComponent}
-    ]},
+  { path: 'products',  component: PrdouctsComponent},
+  { path: 'productInfo/:id', component: ProductDetailsComponent},
 
 ];
 
