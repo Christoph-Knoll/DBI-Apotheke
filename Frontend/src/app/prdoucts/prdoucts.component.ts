@@ -32,4 +32,22 @@ export class PrdouctsComponent implements OnInit {
     });
     return null;
   }
+
+  getStorageInfoByPZN(pzn: number): string{
+    // tslint:disable-next-line:prefer-const
+    let storageUnits: IStorage[];
+    // tslint:disable-next-line:prefer-const
+    let amountStoredProducts = 0;
+    this.storage.filter(i => {
+      if (i.pzn === pzn){
+        storageUnits.push(i);
+      }
+    });
+    storageUnits.filter(i => {
+      amountStoredProducts += i.amount;
+    });
+
+    if (amountStoredProducts === 0){return 'Nicht gelagert'; }
+    return amountStoredProducts.toString();
+  }
 }
