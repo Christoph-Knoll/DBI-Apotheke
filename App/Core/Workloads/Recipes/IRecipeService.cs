@@ -1,4 +1,5 @@
 ﻿using DBI_Apotheke.Core.Workloads.Modules;
+using DBI_Apotheke.Core.Workloads.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,5 +1,6 @@
 ﻿using DBI_Apotheke.Core.Util;
 using DBI_Apotheke.Core.Workloads.Generics;
+using DBI_Apotheke.Core.Workloads.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace DBI_Apotheke.Core.Workloads.Recipes
         { 
             _repository = repository;
         }
+
+        
         public Task<Recipe> InsertItem(string name, string address, string issuer, List<int> pzns)
         {
             var recipe = new Recipe
