@@ -1,0 +1,42 @@
+
+
+<div style="padding-left: 4vw; padding-top: 1vw">
+  <h2 class="title">Neues Rezept erstellen</h2>
+
+    <div>
+      <p class="subtitle" style="margin-left: 1vw">Kundeninformationen</p>
+      <div style="margin: 1vw">
+        <label>
+          <input class="input" style="width: 15vw" type="text" placeholder="Vorname" [(ngModel)]="firstName">
+          <input class="input" style="width: 15vw; margin-left: 1vw" type="text" placeholder="Nachname" [(ngModel)]="lastName">
+        </label>
+      </div>
+      <div style="margin: 1vw">
+        <input class="input" style="width: 31vw" type="text" placeholder="Addresse" [(ngModel)]="address">
+      </div>
+      <div style="margin: 1vw">
+        <input class="input" style="width: 9vw" type="text" placeholder="PLZ" [(ngModel)]="zipCode">
+        <input class="input" style="width: 21vw; margin-left: 1vw"  type="text" placeholder="Stadt" [(ngModel)]="city">
+      </div>
+      <p class="subtitle" style="margin: 1vw">Ausstellender Arzt</p>
+      <div style="margin: 1vw">
+        <input class="input" style="width: 31vw" type="text" placeholder="Ausstellender Arzt" [(ngModel)]="issuer">
+      </div>
+    </div>
+    <p class="subtitle" style="margin: 1vw">Rezept</p>
+    <div style="margin: 1vw" *ngFor="let value of values; let i = index; trackBy: customTrackBy" >
+
+      <label>
+      <input type="number"
+             placeholder="Geben Sie die PZN des {{i+1}}. Produktes ein"
+             style="width: 30vw;" class="input"
+             [(ngModel)]="values[i]">
+    </label>
+    <button class="button" style="margin-left: 1vw" (click)="removeValue(i)">Entfernen</button>
+    </div>
+  <div class="buttons" style="margin: 1vw">
+    <button class="button" (click)="addValue()">Hinzufügen</button>
+    <button class="button is-primary" (click)="createRecipe()">Erstellen</button>
+  </div>
+</div>
+

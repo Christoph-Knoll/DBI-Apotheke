@@ -1,0 +1,40 @@
+<nav class="navbar" role="navigation" aria-label="dropdown navigation">
+  <a class="navbar-item">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Apotheke_Oesterreich_Logo.svg/1200px-Apotheke_Oesterreich_Logo.svg.png" alt="">
+    <p class="title" >potheke Online </p>
+  </a>
+
+  <div id="navbarExampleTransparentExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" routerLink="products">
+        Home
+      </a>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link" >
+          Rezept
+        </a>
+        <div class="navbar-dropdown is-boxed">
+          <a class="navbar-item" routerLink="addRecipe">
+            Rezept hinzufügen
+          </a>
+          <a class="navbar-item" routerLink="redeemRecipe">
+            Rezept einlösen
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero is-danger">
+  <div class="hero-body">
+    <p class="title">
+      Ihre Online Apotheke
+    </p>
+    <p class="subtitle">
+      Alles was sie brauchen um gesund zu bleiben, finden sie hier bei <b>uns</b>
+    </p>
+  </div>
+</section>
+
+<router-outlet></router-outlet>
