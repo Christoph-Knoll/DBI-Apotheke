@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DBI_Apotheke.Core.Util;
 using DBI_Apotheke.Core.Workloads.Generics;
-using DBI_Apotheke.Core.Workloads.ProductInfo;
+using DBI_Apotheke.Core.Workloads.ProductInfos;
 using FluentAssertions;
 using MongoDB.Bson;
 using NSubstitute;
