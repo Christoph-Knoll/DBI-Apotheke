@@ -15,11 +15,12 @@ export abstract class GenericHttpService<T, ID> implements HttpCrudOperations<T,
     }
 
     getAll(): Observable<T[]> {
-        return this.http.get<T[]>(this.base);
+        return this.http.get<T[]>(this.base + '/all');
     }
 
     save(t: T): Observable<T> {
-        return this.http.post<T>(this.base, t);
+      console.log('Ich bin beim Service');
+      return this.http.post<T>(this.base, t);
     }
 
     update(id: ID, t: T): Observable<T> {

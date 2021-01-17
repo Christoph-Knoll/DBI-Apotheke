@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\App\DBI_Apotheke.csproj" />
+    <ProjectReference Include="..\LeoMongo\LeoMongo.csproj" />
   </ItemGroup>
 
 </Project>

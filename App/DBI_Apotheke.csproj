@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>8.0</LangVersion>
 	<Nullable>Enable</Nullable>
   </PropertyGroup>
 
@@ -16,11 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LeoMongo\LeoMongo.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Model\" />
   </ItemGroup>
 
 </Project>
