@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { RedeemRecipeComponent } from './redeem-recipe/redeem-recipe.component';
 import { PrdouctsComponent } from './prdoucts/prdoucts.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import {FormsModule} from '@angular/forms';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,11 +19,13 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     PrdouctsComponent,
     ProductDetailsComponent
   ],
-    imports: [
-        BrowserModule,
-        RouterModule,
-        AppRoutingModule
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    RouterModule,
+    AppRoutingModule,
+    FormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
