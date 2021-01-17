@@ -10,7 +10,8 @@ import {IProduct} from '../contracts/IProduct';
 export class ProductService extends GenericHttpService<IProduct, number> {
 
   constructor(protected http: HttpClient) {
-    // #TODO Add path
-    super(http, `${environment.api.baseUrl}/`);
+    super(http, `${environment.api.baseUrl}/product`);
   }
+
+
 }
