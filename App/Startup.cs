@@ -39,8 +39,11 @@ namespace App
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IStorageRepository, StorageRepository>();
             services.AddScoped<IRecipeRepository, RecipeRepository>();
-            // TODO Add services
 
+            services.AddScoped<IProductInfoService, ProductInfoService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IStorageService, StorageService>();
+            services.AddScoped<IRecipeService, RecipeService>();
 
             services.AddTransient<IDateTimeProvider, DateTimeProvider>();
 
