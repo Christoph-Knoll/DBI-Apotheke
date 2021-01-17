@@ -15,6 +15,7 @@ namespace DBI_Apotheke.Core.Workloads.Recipes
 transactionProvider, databaseProvider)
         {
         }
+
         public double GetTotalPrice(List<Product> products)
         {
             double totalPrice = 0;
