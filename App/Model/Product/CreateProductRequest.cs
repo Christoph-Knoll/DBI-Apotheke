@@ -13,6 +13,6 @@ namespace DBI_Apotheke.Model.Product
         public double Price { get; set; } = default!;
         public int Amount { get; set; } = default!;
         public Unit Unit { get; set; }
-        public ObjectId ProductInfoId { get; set; }
+        public string ProductInfoId { get; set; }
     }
 }
