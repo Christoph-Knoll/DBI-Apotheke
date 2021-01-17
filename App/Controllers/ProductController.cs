@@ -10,7 +10,7 @@ using MongoDB.Bson;
 
 namespace DBI_Apotheke.Controllers
 {
-    [Microsoft.AspNetCore.Components.Route("api/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public sealed class ProductController : ControllerBase
     {
