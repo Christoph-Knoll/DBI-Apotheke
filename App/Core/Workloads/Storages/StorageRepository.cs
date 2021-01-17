@@ -10,7 +10,7 @@ namespace DBI_Apotheke.Core.Workloads.Storages
 {
     public class StorageRepository : GenericRepository<Storage>, IStorageRepository
     {
-        public RecipeRepository(ITransactionProvider transactionProvider, IDatabaseProvider databaseProvider) : base(
+        public StorageRepository(ITransactionProvider transactionProvider, IDatabaseProvider databaseProvider) : base(
 transactionProvider, databaseProvider)
         {
         }

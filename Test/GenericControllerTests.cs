@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DBI_Apotheke.Core.Util;
-using DBI_Apotheke.Core.Workloads.Generics;
 using DBI_Apotheke.Core.Workloads.ProductInfos;
 using FluentAssertions;
 using MongoDB.Bson;
@@ -19,10 +17,8 @@ namespace MongoDBDemoApp.Test
         public async Task TestGetProductInfoById()
         {
             var idPI = new ObjectId();
-            var idI = new ObjectId();
             var ingredient = new Ingredient
             {
-                Id = idI,
                 Amount = 100,
                 Name = "Wirkstoff A",
                 Unit = DBI_Apotheke.Core.Workloads.Modules.Unit.G
