@@ -85,7 +85,15 @@ namespace DBI_Apotheke.Controllers
         public async Task<IActionResult> Create([FromBody] CreateProductRequest request)
         {
             using var transaction = await this._transactionProvider.BeginTransaction();
-            var product = await this._service.InsertItem();
+
+            var productInfo = await _productInfoService.GetItemById(request.ProductInfoId);
+
+            if (productInfo == null)
+            {
+                return BadRequest();
+            }
+            
+            var product = await this._service.InsertItem(productInfo, request.PZN, request.Price, request.Amount, request.Unit);
             await transaction.CommitAsync();
             return CreatedAtAction(nameof(GetById), new { id = product.Id.ToString() }, product);
         }

@@ -13,7 +13,6 @@ using DBI_Apotheke.Core.Workloads.ProductInfos;
 using DBI_Apotheke.Core.Workloads.Products;
 using DBI_Apotheke.Core.Workloads.Storages;
 using DBI_Apotheke.Core.Workloads.Recipes;
-using IProductService = DBI_Apotheke.Core.Workloads.ProductInfos.IProductService;
 
 namespace App
 {
@@ -41,8 +40,8 @@ namespace App
             services.AddScoped<IStorageRepository, StorageRepository>();
             services.AddScoped<IRecipeRepository, RecipeRepository>();
 
-            services.AddScoped<IProductService, ProductInfoService>();
-            services.AddScoped<DBI_Apotheke.Core.Workloads.Products.IProductService, ProductService>();
+            services.AddScoped<IProductInfoService, ProductInfoService>();
+            services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IStorageService, StorageService>();
             services.AddScoped<IRecipeService, RecipeService>();
 

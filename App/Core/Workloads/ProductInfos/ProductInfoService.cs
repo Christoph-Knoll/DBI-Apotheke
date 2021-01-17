@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DBI_Apotheke.Core.Workloads.ProductInfos
 {
-    public class ProductInfoService : ServiceBase<ProductInfo>, IProductService
+    public class ProductInfoService : ServiceBase<ProductInfo>, IProductInfoService
     {
         private readonly IProductInfoRepository _repository;
 
