@@ -19,7 +19,8 @@ export abstract class GenericHttpService<T, ID> implements HttpCrudOperations<T,
     }
 
     save(t: T): Observable<T> {
-        return this.http.post<T>(this.base, t);
+      console.log('Ich bin beim Service');
+      return this.http.post<T>(this.base, t);
     }
 
     update(id: ID, t: T): Observable<T> {

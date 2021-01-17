@@ -16,7 +16,8 @@ import {IIngredient, Unit} from '../contracts/IIngredient';
 export class ProductsComponent implements OnInit {
 
 
-  products: IProduct[] = [
+  //region TestData
+  /*products: IProduct[] = [
     {
       pzn: 1,
       price: 1.20,
@@ -98,15 +99,21 @@ export class ProductsComponent implements OnInit {
       amount: 12,
       storageSite: 'Linz',
     }
-  ];
+  ];*/
+  //endregion
+
+  products: IProduct[];
+  productInfos: IProductInfo[];
+  storage: IStorage[];
+
   constructor(private productService: ProductService,
               private productInfoService: ProductInfoService,
               private storageService: StorageService) { }
 
   async ngOnInit(): Promise<void> {
-    // this.products = await this.productService.getAll().toPromise();
-    // this.productInfos = await this.productInfoService.getAll().toPromise();
-    // this.storage = await this.stor ageService.getAll().toPromise();
+    this.products = await this.productService.getAll().toPromise();
+    this.productInfos = await this.productInfoService.getAll().toPromise();
+    this.storage = await this.storageService.getAll().toPromise();
   }
 
   getProductInfoById(productInfoId: number): IProductInfo {
