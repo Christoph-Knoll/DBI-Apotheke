@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DBI_Apotheke.Core.Workloads.ProductInfos
 {
-    interface IProductInfoService : IServiceBase<ProductInfo>
+    public interface IProductInfoService : IServiceBase<ProductInfo>
     {
         Task<ProductInfo> InsertItem(string name, string brand, IEnumerable<Ingredient> ingredients);
 
