@@ -9,7 +9,7 @@ namespace DBI_Apotheke.Core.Workloads.ProductInfos
 {
     interface IProductInfoService : IServiceBase<ProductInfo>
     {
-        Task<Product> InsertItem(string name, string brand, IEnumerable<Ingredient> ingredients);
+        Task<ProductInfo> InsertItem(string name, string brand, IEnumerable<Ingredient> ingredients);
 
     }
 }
