@@ -9,8 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using DBI_Apotheke.Core.Util;
-using DBI_Apotheke.Core.Workloads.Comments;
-using DBI_Apotheke.Core.Workloads.Posts;
+using DBI_Apotheke.Core.Workloads.ProductInfos;
+using DBI_Apotheke.Core.Workloads.Products;
+using DBI_Apotheke.Core.Workloads.Storages;
+using DBI_Apotheke.Core.Workloads.Recipes;
 
 namespace App
 {
@@ -33,9 +35,15 @@ namespace App
             // configure fwk
             services.AddLeoMongo<MongoConfig>();
 
-            // TODO Add services
-            //services.AddScoped<IPostRepository, PostRepository>();
-            
+            services.AddScoped<IProductInfoRepository, ProductInfoRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IStorageRepository, StorageRepository>();
+            services.AddScoped<IRecipeRepository, RecipeRepository>();
+
+            services.AddScoped<IProductInfoService, ProductInfoService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IStorageService, StorageService>();
+            services.AddScoped<IRecipeService, RecipeService>();
 
             services.AddTransient<IDateTimeProvider, DateTimeProvider>();
 
