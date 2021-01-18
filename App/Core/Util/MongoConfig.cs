@@ -11,7 +11,11 @@ namespace DBI_Apotheke.Core.Util
             ConnectionString = settings.ConnectionString;
             DatabaseName = settings.Database;
         }
-
+        public MongoConfig(string connectionString, string databaseName)
+        {
+            ConnectionString = connectionString;
+            DatabaseName = databaseName;
+        }
         public string ConnectionString { get; }
         public string DatabaseName { get; }
     }
