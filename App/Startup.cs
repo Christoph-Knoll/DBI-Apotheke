@@ -13,6 +13,9 @@ using DBI_Apotheke.Core.Workloads.ProductInfos;
 using DBI_Apotheke.Core.Workloads.Products;
 using DBI_Apotheke.Core.Workloads.Storages;
 using DBI_Apotheke.Core.Workloads.Recipes;
+using LeoMongo.Database;
+using LeoMongo.Transaction;
+using MongoDB.Driver;
 
 namespace App
 {
@@ -23,8 +26,22 @@ namespace App
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
+        private async Task SetIndexes(IDatabaseProvider databaseProvider)
+        {
+            var session = await databaseProvider.StartSession();
+            
+            
+            var collection = databaseProvider.Database.GetCollection<Product>(MongoUtil.GetCollectionName<Product>());
+            
+            var indexKeysDefinition = Builders<Product>.IndexKeys.Ascending(p => p.PZN);
+            await collection.Indexes.CreateOneAsync(new CreateIndexModel<Product>(indexKeysDefinition));
+
+            await session.CommitTransactionAsync();
+        }
+        
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
@@ -63,7 +80,7 @@ namespace App
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDatabaseProvider db)
         {
             if (env.IsDevelopment())
             {
@@ -83,6 +100,8 @@ namespace App
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+            SetIndexes(db).ConfigureAwait(false);
         }
     }
 
