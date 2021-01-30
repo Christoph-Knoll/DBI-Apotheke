@@ -7,14 +7,16 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using DBI_Apotheke.Core.Workloads.Products;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace DBI_Apotheke.Core.Workloads.ProductInfos
 {
-    public class ProductInfoRepository : GenericRepository<ProductInfo>, IProductInfoRepository
+    public class ProductInfoRepository : GenericMasterDetailRepository<ProductInfo, Product>, IProductInfoRepository
     {
-        public ProductInfoRepository(ITransactionProvider transactionProvider, IDatabaseProvider databaseProvider) : base(
-transactionProvider, databaseProvider)
+        public ProductInfoRepository(ITransactionProvider transactionProvider, IDatabaseProvider databaseProvider, IProductRepository productRepository) 
+            : base(transactionProvider, databaseProvider, productRepository)
         {
         }
 
@@ -29,6 +31,12 @@ transactionProvider, databaseProvider)
             }
             
             return (IReadOnlyCollection<ProductInfo>)res;
+        }
+
+
+        public async Task<(ObjectId ItemId, List<ObjectId>? DetailIds)?> GetProductInfoWithProducts(ObjectId id)
+        {
+            return await GetItemWithDetails(id, p => p.ProductInfoId);
         }
     }
 }
