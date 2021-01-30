@@ -4,7 +4,7 @@
   <div class="level-left">
     <div class="level-item">
       <p class="subtitle is-5">
-        <strong>3</strong> Produkte
+        <strong>{{products.length}}</strong> Produkte
       </p>
     </div>
     <div class="level-item">
@@ -34,16 +34,45 @@
   </thead>
   <tbody>
   <ng-container *ngFor="let product of products">
-    <tr (click)="onProductInfoClick(product.productInfoId)"   [ngClass]="{'has-background-warning': getStorageInfoByPZN(product.pzn) == 0}" *ngIf="getProductInfoById(product.productInfoId) != null">
+    <tr (click)="onProductInfoClick(product.productInfoId, product)" [ngClass]="{'has-background-warning': getStorageAmountByPZN(product.pzn) == 0}" *ngIf="getProductInfoById(product.productInfoId) != null">
       <th>{{product.pzn}}</th>
       <td>{{getProductInfoById(product.productInfoId).name}}</td>
       <td>{{getProductInfoById(product.productInfoId).brand}}</td>
       <td>{{product.amount}} {{unit[product.unit] }}</td>
       <td>{{product.price |currency: 'EUR'}}</td>
-      <td >{{getStorageInfoByPZN(product.pzn)}}</td>
+      <td >{{getStorageAmountByPZN(product.pzn)}}</td>
     </tr>
   </ng-container>
   </tbody>
 
-
 </table>
+
+<div class="modal" [ngClass]="{'is-active': modalIsOpened}">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">{{currentProductInfo.name}}</p>
+      <button (click)="closeModal()" class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <p class="subtitle">Produktname: </p>
+      <input class="input" style="width: 25vw; margin-left: 1vw;margin-bottom: 1vw;margin-top: -0.5vw" type="text" readonly value="{{currentProductInfo.name}}">
+      <p class="subtitle">Produktmarke: </p>
+      <input class="input" style="width: 25vw; margin-left: 1vw;margin-bottom: 1vw;margin-top: -0.5vw" type="text" type="text" readonly value="{{currentProductInfo.brand}}">
+      <p class="subtitle">Inhaltsstoffe: </p>
+      <input *ngFor="let ingredient of currentProductInfo.ingredients"
+             class="input" style="width: 11vw;margin-left: 1vw;margin-bottom: 1vw;margin-top: -0.5vw" type="text"
+             readonly value="{{ingredient.name}} - {{ingredient.amount}}{{unit[ingredient.unit]}}">
+      <div *ngIf="getStorageLocations(currentProductInfo.id).length != 0">
+        <p class="subtitle">Gelagert in: </p>
+        <input *ngFor="let storage of getStorageLocations(currentProductInfo.id)"
+               class="input" style="width: 11vw;margin-left: 1vw;margin-bottom: 1vw;margin-top: -0.5vw" type="text"
+               readonly value="{{storage.storageSite}}">
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button (click)="closeModal()" class="button">Close</button>
+    </footer>
+  </div>
+</div>
+
