@@ -32,7 +32,7 @@ namespace MongoDBDemoApp.Test
             var transactionProvider = Factory.CreateTransactionProvider(databaseProvider);
 
             var productRepository = new ProductRepository(transactionProvider, databaseProvider);
-            var productInfoRepository = new ProductInfoRepository(transactionProvider, databaseProvider);
+            var productInfoRepository = new ProductInfoRepository(transactionProvider, databaseProvider,productRepository);
             var recipeRepository = new RecipeRepository(transactionProvider, databaseProvider);
             var storageRepository = new StorageRepository(transactionProvider, databaseProvider);
             // Clear database :)
