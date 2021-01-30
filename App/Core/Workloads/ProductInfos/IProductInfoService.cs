@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 
 namespace DBI_Apotheke.Core.Workloads.ProductInfos
 {
@@ -13,5 +14,6 @@ namespace DBI_Apotheke.Core.Workloads.ProductInfos
 
         Task<IReadOnlyCollection<ProductInfo>> GetByIngredient(string ingredientName);
 
+        Task<(ObjectId ItemId, List<ObjectId>? DetailIds)?> GetProductInfoWithProducts(ObjectId id);
     }
 }
