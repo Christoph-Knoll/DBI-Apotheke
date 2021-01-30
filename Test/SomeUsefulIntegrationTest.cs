@@ -40,7 +40,7 @@ namespace MongoDBDemoApp.Test
             var ingredient = new Ingredient
             {
                 Amount = 100,
-                Name = "Wirkstoff A",W
+                Name = "Wirkstoff A",
                 Unit = DBI_Apotheke.Core.Workloads.Modules.Unit.MG
             };
             var idPi = new ObjectId();
