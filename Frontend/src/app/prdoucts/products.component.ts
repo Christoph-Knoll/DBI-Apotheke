@@ -17,7 +17,7 @@ export class ProductsComponent implements OnInit {
 
 
   //region TestData
-  /*products: IProduct[] = [
+  products: IProduct[] = [
     {
       pzn: 1,
       price: 1.20,
@@ -75,6 +75,11 @@ export class ProductsComponent implements OnInit {
           amount: 20,
           unit: Unit.ml,
         },
+        {
+          name: 'Vitamin Cestronuxelinara',
+          amount: 20,
+          unit: Unit.ml,
+        },
       ]
     }
   ];
@@ -91,7 +96,7 @@ export class ProductsComponent implements OnInit {
     },
     {
       pzn: 2,
-      amount: 2,
+      amount: 0,
       storageSite: 'Leonding',
     },
     {
@@ -99,27 +104,36 @@ export class ProductsComponent implements OnInit {
       amount: 12,
       storageSite: 'Linz',
     }
-  ];*/
+  ];
   //endregion
 
-  products: IProduct[];
+  //region Code for Data from DB
+  /*products: IProduct[];
   productInfos: IProductInfo[];
-  storage: IStorage[];
+  storage: IStorage[];*/
+  //endregion
+  modalIsOpened: boolean;
+  currentProductInfo: IProductInfo;
+  currentProduct: IProduct;
 
   constructor(private productService: ProductService,
               private productInfoService: ProductInfoService,
               private storageService: StorageService) { }
 
   async ngOnInit(): Promise<void> {
-    this.products = await this.productService.getAll().toPromise();
+    /*this.products = await this.productService.getAll().toPromise();
     this.productInfos = await this.productInfoService.getAll().toPromise();
-    this.storage = await this.storageService.getAll().toPromise();
+    this.storage = await this.storageService.getAll().toPromise();*/
+    this.modalIsOpened = false;
+    this.currentProductInfo = this.getProductInfoById(1);
+    this.currentProduct = this.products[this.products.length - 1];
   }
 
   getProductInfoById(productInfoId: number): IProductInfo {
-    return this.productInfos.find(i => i.id === productInfoId); }
+    return this.productInfos.find(i => i.id === productInfoId);
+  }
 
-  getStorageInfoByPZN(pzn: number): number{
+  getStorageAmountByPZN(pzn: number): number{
     let amountStoredProducts = 0;
     this.storage.filter(i => {
       if (i.pzn === pzn){
@@ -133,7 +147,24 @@ export class ProductsComponent implements OnInit {
     return Unit;
   }
 
-  onProductInfoClick(productInfoId: number): void {
-    console.log(productInfoId);
+  async onProductInfoClick(productInfoId: number, product: IProduct): Promise<void> {
+    this.currentProduct = product;
+    this.currentProductInfo = this.getProductInfoById(productInfoId);
+    this.modalIsOpened = true;
+  }
+
+  closeModal(): void {
+    this.modalIsOpened = false;
+  }
+
+  getStorageLocations(productInfoId: number): IStorage[] {
+    const storages: IStorage[] = [];
+    const storage = this.storage.filter(s => this.currentProduct.pzn === s.pzn);
+    storage.filter(s => {
+      if (s.pzn === this.currentProduct.pzn && s.amount !==  0){
+        storages.push(s);
+      }
+    });
+    return storages;
   }
 }
