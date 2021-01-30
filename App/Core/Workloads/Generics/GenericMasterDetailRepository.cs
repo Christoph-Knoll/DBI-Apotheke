@@ -16,10 +16,10 @@ namespace DBI_Apotheke.Core.Workloads.Generics
         where T : EntityBase, new()
         where D : EntityBase, new()
     {
-        private readonly GenericRepository<D> _detailRepository;
+        private readonly IGenericRepository<D> _detailRepository;
 
         public GenericMasterDetailRepository(ITransactionProvider transactionProvider, IDatabaseProvider databaseProvider,
-            GenericRepository<D> detailRepository) : base(
+            IGenericRepository<D> detailRepository) : base(
             transactionProvider, databaseProvider)
         {
             this._detailRepository = detailRepository;

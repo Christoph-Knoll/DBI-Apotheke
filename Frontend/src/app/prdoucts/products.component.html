@@ -1,0 +1,49 @@
+<!-- Main container -->
+<nav class="level" style="margin: 2vw">
+  <!-- Left side -->
+  <div class="level-left">
+    <div class="level-item">
+      <p class="subtitle is-5">
+        <strong>3</strong> Produkte
+      </p>
+    </div>
+    <div class="level-item">
+      <div class="field has-addons">
+        <p class="control">
+          <input class="input" type="text" placeholder="Finde ">
+        </p>
+        <p class="control">
+          <button class="button">
+            Search
+          </button>
+        </p>
+      </div>
+    </div>
+  </div>
+</nav>
+<table class="table is-striped is-hoverable" style="margin: 2vw; width: 50vw">
+  <thead>
+  <tr>
+    <th><abbr title="Pharmazentralnummer">PZN</abbr></th>
+    <th>Produktname</th>
+    <th>Brand</th>
+    <th>Inhalt</th>
+    <th>Preis</th>
+    <th>Noch übrig</th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let product of products">
+    <tr (click)="onProductInfoClick(product.productInfoId)"   [ngClass]="{'has-background-warning': getStorageInfoByPZN(product.pzn) == 0}" *ngIf="getProductInfoById(product.productInfoId) != null">
+      <th>{{product.pzn}}</th>
+      <td>{{getProductInfoById(product.productInfoId).name}}</td>
+      <td>{{getProductInfoById(product.productInfoId).brand}}</td>
+      <td>{{product.amount}} {{unit[product.unit] }}</td>
+      <td>{{product.price |currency: 'EUR'}}</td>
+      <td >{{getStorageInfoByPZN(product.pzn)}}</td>
+    </tr>
+  </ng-container>
+  </tbody>
+
+
+</table>
