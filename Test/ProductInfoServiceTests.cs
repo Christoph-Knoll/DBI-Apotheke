@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using DBI_Apotheke.Core.Util;
 using DBI_Apotheke.Core.Workloads.Generics;
 using DBI_Apotheke.Core.Workloads.ProductInfos;
+using DBI_Apotheke.Core.Workloads.Products;
 using FluentAssertions;
 using MongoDB.Bson;
 using NSubstitute;
@@ -51,6 +52,37 @@ namespace MongoDBDemoApp.Test
             productInfo!.Ingredients.Should().BeEquivalentTo(expected.Ingredients);
             productInfo!.Name.Should().Be(expected.Name);
             productInfo!.Brand.Should().Be(expected.Brand);
+        }
+        [Fact]
+        public async Task TestGetProductInfoWithProductById()
+        {
+            var idPI = new ObjectId();
+            var ingredient = new Ingredient
+            {
+                Amount = 100,
+                Name = "Wirkstoff A",
+                Unit = DBI_Apotheke.Core.Workloads.Modules.Unit.G
+            };
+            var list = new List<Ingredient>();
+            list.Add(ingredient);
+            var expectedProduct = new Product
+            {
+                Amount = 200,
+                Id = new ObjectId(),
+                Price = 10,
+                ProductInfoId = idPI,
+                PZN = 01,
+                Unit = DBI_Apotheke.Core.Workloads.Modules.Unit.G
+            };
+            var repoMock = Substitute.For<IProductInfoRepository>();
+            repoMock.GetProductInfoWithProducts(Arg.Any<ObjectId>()).Returns((idPI,new List<ObjectId> {expectedProduct.Id}));
+
+            var service = new ProductInfoService(Substitute.For<IDateTimeProvider>(), repoMock);
+            var productInfo = await service.GetProductInfoWithProducts(idPI);
+
+            await repoMock.Received(1).GetProductInfoWithProducts(Arg.Is(idPI));
+            productInfo.Should().NotBeNull();
+            productInfo!.Value.Should().NotBe((idPI,null));
         }
         [Fact]
         public async Task TestAddProductInfo()
