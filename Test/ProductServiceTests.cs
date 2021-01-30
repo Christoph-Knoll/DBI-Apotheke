@@ -14,7 +14,6 @@ using Xunit;
 namespace MongoDBDemoApp.Test
 {
     public sealed class ProductServiceTests
-
     {
         [Fact]
         public async Task TestGetProductById()
