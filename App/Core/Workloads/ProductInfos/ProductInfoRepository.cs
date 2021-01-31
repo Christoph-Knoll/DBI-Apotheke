@@ -38,5 +38,11 @@ namespace DBI_Apotheke.Core.Workloads.ProductInfos
         {
             return await GetItemWithDetails(id, p => p.ProductInfoId);
         }
+
+        public async Task<IReadOnlyCollection<ProductInfo>> GetByName(string name)
+        {
+            return await Query(x => x.Name.StartsWith(name));
+        }
+        
     }
 }

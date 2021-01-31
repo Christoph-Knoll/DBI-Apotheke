@@ -46,6 +46,24 @@ namespace DBI_Apotheke.Controllers
         }
         
         /// <summary>
+        ///     Returns the ProductInfo identified by its name.
+        /// </summary>
+        /// <param name="name">name of ProductInfo</param>
+        /// <returns>a ProductInfo</returns>
+        [HttpGet]
+        public async Task<ActionResult<IReadOnlyCollection<ProductInfoDTO>>> GetByName(string name)
+        {
+            IReadOnlyCollection<ProductInfo> productInfos;
+            if (string.IsNullOrWhiteSpace(name) ||
+                (productInfos = await this._service.GetByName(name)) == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(this._mapper.Map<List<ProductInfo>>(productInfos));
+        }
+        
+        /// <summary>
         ///     Returns the ProductInfo identified by a Ingredient it contains.
         /// </summary>
         /// <param name="ingredientName">Name of ingredient</param>
