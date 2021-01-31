@@ -2,7 +2,7 @@
 using DBI_Apotheke.Core.Util;
 using Xunit;
 
-namespace MongoDBDemoApp.Test
+namespace DBI_Apotheke.Test
 {
     public sealed class MapperTests
     {

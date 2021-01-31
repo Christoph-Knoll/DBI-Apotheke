@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using DBI_Apotheke.Core.Util;
-using DBI_Apotheke.Core.Workloads.Generics;
 using DBI_Apotheke.Core.Workloads.ProductInfos;
 using DBI_Apotheke.Core.Workloads.Products;
 using FluentAssertions;
 using MongoDB.Bson;
 using NSubstitute;
-using NSubstitute.ReceivedExtensions;
 using Xunit;
 
-namespace MongoDBDemoApp.Test
+namespace DBI_Apotheke.Test
 {
     public sealed class ProductServiceTests
     {

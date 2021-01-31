@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using DBI_Apotheke.Core.Util;
-using DBI_Apotheke.Core.Workloads.Generics;
 using DBI_Apotheke.Core.Workloads.ProductInfos;
 using DBI_Apotheke.Core.Workloads.Products;
 using FluentAssertions;
@@ -10,7 +8,7 @@ using MongoDB.Bson;
 using NSubstitute;
 using Xunit;
 
-namespace MongoDBDemoApp.Test
+namespace DBI_Apotheke.Test
 {
     public sealed class ProductInfoServiceTests
 
@@ -31,13 +29,13 @@ namespace MongoDBDemoApp.Test
             repoMock.GetItemById(Arg.Any<ObjectId>()).Returns(ci => new ProductInfo
             {
                 Id = ci.Arg<ObjectId>(),
-                Brand = "Aspiring",
+                Brand = "Aspirin",
                 Ingredients = list,
                 Name = "AspirinComplex"
             });
             var expected = new ProductInfo
             {
-                Brand = "Aspiring",
+                Brand = "Aspirin",
                 Id = idPI,
                 Ingredients = list,
                 Name = "AspirinComplex"
@@ -53,6 +51,7 @@ namespace MongoDBDemoApp.Test
             productInfo!.Name.Should().Be(expected.Name);
             productInfo!.Brand.Should().Be(expected.Brand);
         }
+
         [Fact]
         public async Task TestGetProductInfoWithProductById()
         {
@@ -98,7 +97,7 @@ namespace MongoDBDemoApp.Test
             list.Add(ingredient);
             var expectedPI = new ProductInfo
             {
-                Brand = "Aspiring",
+                Brand = "Aspirin",
                 Id = idPi,
                 Ingredients = list,
                 Name = "AspirinComplex"
@@ -142,14 +141,14 @@ namespace MongoDBDemoApp.Test
             {
                 new ProductInfo
                 {
-                    Brand = "Aspiring",
+                    Brand = "Aspirin",
                     Id = new ObjectId(),
                     Ingredients = list,
                     Name = "AspirinComplex"
                 },
                 new ProductInfo
                 {
-                    Brand = "Aspiring",
+                    Brand = "Aspirin",
                     Id = new ObjectId(),
                     Ingredients = list,
                     Name = "AspirinComplex2"
@@ -196,7 +195,7 @@ namespace MongoDBDemoApp.Test
             });
             var productInfo = new ProductInfo
             {
-                Brand = "Aspiring",
+                Brand = "Aspirin",
                 Id = new ObjectId(),
                 Ingredients = list,
                 Name = "AspirinComplex"
@@ -224,14 +223,14 @@ namespace MongoDBDemoApp.Test
             list.Add(ingredient);
             var normalPI = new ProductInfo
             {
-                Brand = "Aspiring",
+                Brand = "Aspirin",
                 Id = idPi,
                 Ingredients = list,
                 Name = "AspirinComplex"
             };
             var duplicatePI = new ProductInfo
             {
-                Brand = "Aspiring",
+                Brand = "Aspirin",
                 Id = idPi,
                 Ingredients = list,
                 Name = "AspirinComplex"
