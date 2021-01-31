@@ -6,6 +6,7 @@ import {RedeemRecipeComponent} from './redeem-recipe/redeem-recipe.component';
 import { ProductsComponent } from './prdoucts/products.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/products', pathMatch: 'full'},
   { path: 'addRecipe', component: AddRecipeComponent },
   { path: 'redeemRecipe', component: RedeemRecipeComponent},
   { path: 'products',  component: ProductsComponent},
