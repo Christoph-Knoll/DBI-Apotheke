@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using DBI_Apotheke.Core.Util;
-using DBI_Apotheke.Core.Workloads.Generics;
 using DBI_Apotheke.Core.Workloads.ProductInfos;
+using DBI_Apotheke.Core.Workloads.Products;
 using FluentAssertions;
 using MongoDB.Bson;
 using NSubstitute;
 using Xunit;
 
-namespace MongoDBDemoApp.Test
+namespace DBI_Apotheke.Test
 {
     public sealed class ProductInfoServiceTests
 
@@ -30,13 +29,13 @@ namespace MongoDBDemoApp.Test
             repoMock.GetItemById(Arg.Any<ObjectId>()).Returns(ci => new ProductInfo
             {
                 Id = ci.Arg<ObjectId>(),
-                Brand = "Aspiring",
+                Brand = "Aspirin",
                 Ingredients = list,
                 Name = "AspirinComplex"
             });
             var expected = new ProductInfo
             {
-                Brand = "Aspiring",
+                Brand = "Aspirin",
                 Id = idPI,
                 Ingredients = list,
                 Name = "AspirinComplex"
@@ -52,6 +51,38 @@ namespace MongoDBDemoApp.Test
             productInfo!.Name.Should().Be(expected.Name);
             productInfo!.Brand.Should().Be(expected.Brand);
         }
+
+        [Fact]
+        public async Task TestGetProductInfoWithProductById()
+        {
+            var idPI = new ObjectId();
+            var ingredient = new Ingredient
+            {
+                Amount = 100,
+                Name = "Wirkstoff A",
+                Unit = DBI_Apotheke.Core.Workloads.Modules.Unit.G
+            };
+            var list = new List<Ingredient>();
+            list.Add(ingredient);
+            var expectedProduct = new Product
+            {
+                Amount = 200,
+                Id = new ObjectId(),
+                Price = 10,
+                ProductInfoId = idPI,
+                PZN = 01,
+                Unit = DBI_Apotheke.Core.Workloads.Modules.Unit.G
+            };
+            var repoMock = Substitute.For<IProductInfoRepository>();
+            repoMock.GetProductInfoWithProducts(Arg.Any<ObjectId>()).Returns((idPI,new List<ObjectId> {expectedProduct.Id}));
+
+            var service = new ProductInfoService(Substitute.For<IDateTimeProvider>(), repoMock);
+            var productInfo = await service.GetProductInfoWithProducts(idPI);
+
+            await repoMock.Received(1).GetProductInfoWithProducts(Arg.Is(idPI));
+            productInfo.Should().NotBeNull();
+            productInfo!.Value.Should().NotBe((idPI,null));
+        }
         [Fact]
         public async Task TestAddProductInfo()
         {
@@ -66,7 +97,7 @@ namespace MongoDBDemoApp.Test
             list.Add(ingredient);
             var expectedPI = new ProductInfo
             {
-                Brand = "Aspiring",
+                Brand = "Aspirin",
                 Id = idPi,
                 Ingredients = list,
                 Name = "AspirinComplex"
@@ -110,14 +141,14 @@ namespace MongoDBDemoApp.Test
             {
                 new ProductInfo
                 {
-                    Brand = "Aspiring",
+                    Brand = "Aspirin",
                     Id = new ObjectId(),
                     Ingredients = list,
                     Name = "AspirinComplex"
                 },
                 new ProductInfo
                 {
-                    Brand = "Aspiring",
+                    Brand = "Aspirin",
                     Id = new ObjectId(),
                     Ingredients = list,
                     Name = "AspirinComplex2"
@@ -164,7 +195,7 @@ namespace MongoDBDemoApp.Test
             });
             var productInfo = new ProductInfo
             {
-                Brand = "Aspiring",
+                Brand = "Aspirin",
                 Id = new ObjectId(),
                 Ingredients = list,
                 Name = "AspirinComplex"
@@ -192,14 +223,14 @@ namespace MongoDBDemoApp.Test
             list.Add(ingredient);
             var normalPI = new ProductInfo
             {
-                Brand = "Aspiring",
+                Brand = "Aspirin",
                 Id = idPi,
                 Ingredients = list,
                 Name = "AspirinComplex"
             };
             var duplicatePI = new ProductInfo
             {
-                Brand = "Aspiring",
+                Brand = "Aspirin",
                 Id = idPi,
                 Ingredients = list,
                 Name = "AspirinComplex"

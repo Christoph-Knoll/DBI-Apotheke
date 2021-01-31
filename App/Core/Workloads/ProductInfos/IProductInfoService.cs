@@ -15,5 +15,7 @@ namespace DBI_Apotheke.Core.Workloads.ProductInfos
         Task<IReadOnlyCollection<ProductInfo>> GetByIngredient(string ingredientName);
 
         Task<(ObjectId ItemId, List<ObjectId>? DetailIds)?> GetProductInfoWithProducts(ObjectId id);
+
+        Task<IReadOnlyCollection<ProductInfo>> GetByName(string name);
     }
 }

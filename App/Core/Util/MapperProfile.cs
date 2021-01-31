@@ -20,7 +20,8 @@ namespace DBI_Apotheke.Core.Util
                 .ForMember(p => p.Id, c => c.MapFrom(p => p.Id.ToString()))
                 .ForMember(p => p.ProductInfoId, c => c.MapFrom(p => p.ProductInfoId.ToString()));
             CreateMap<Recipe, RecipeDTO>()
-                .ForMember(p => p.Id, c => c.MapFrom(p => p.Id.ToString()));
+                .ForMember(p => p.Id, c => c.MapFrom(p => p.Id.ToString()))
+                .ForMember(p => p.PriceSum, c => c.Ignore());
 
             CreateMap<Storage, StorageDTO>()
                 .ForMember(p => p.Id, c => c.MapFrom(p => p.Id.ToString()));
