@@ -31,7 +31,7 @@ namespace DBI_Apotheke.Core.Workloads.Recipes
 
             return this._repository.InsertItem(recipe);
         }
-        public async Task<double> GetTotalPriceAsync(ObjectId recipeId)
+        public async Task<double> GetTotalPrice(ObjectId recipeId)
         {
             var recipe = await this.GetItemById(recipeId);
 

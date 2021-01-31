@@ -7,7 +7,7 @@ import {IStorage} from '../contracts/IStorage';
 @Injectable({
   providedIn: 'root'
 })
-export class StorageService extends GenericHttpService<IStorage, number> {
+export class StorageService extends GenericHttpService<IStorage, string> {
 
   constructor(protected http: HttpClient) {
     super(http, `${environment.api.baseUrl}/storage`);

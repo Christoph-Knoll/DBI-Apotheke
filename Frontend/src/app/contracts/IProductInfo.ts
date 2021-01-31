@@ -1,7 +1,7 @@
 import {IIngredient} from './IIngredient';
 
 export interface IProductInfo{
-  id: number;
+  id: string;
   name: string;
   brand: string;
   state: State;

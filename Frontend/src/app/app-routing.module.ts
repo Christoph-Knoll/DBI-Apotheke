@@ -4,13 +4,12 @@ import {RouterModule, Routes} from '@angular/router';
 import {AddRecipeComponent} from './add-recipe/add-recipe.component';
 import {RedeemRecipeComponent} from './redeem-recipe/redeem-recipe.component';
 import { ProductsComponent } from './prdoucts/products.component';
-import {ProductDetailsComponent} from './product-details/product-details.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/products', pathMatch: 'full'},
   { path: 'addRecipe', component: AddRecipeComponent },
   { path: 'redeemRecipe', component: RedeemRecipeComponent},
   { path: 'products',  component: ProductsComponent},
-  { path: 'productInfo/:id', component: ProductDetailsComponent},
 
 ];
 

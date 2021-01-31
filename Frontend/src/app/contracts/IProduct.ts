@@ -5,6 +5,6 @@ export interface IProduct{
   price: number;
   amount: number;
   unit: Unit;
-  productInfoId: number;
+  productInfoId: string;
 }
 
