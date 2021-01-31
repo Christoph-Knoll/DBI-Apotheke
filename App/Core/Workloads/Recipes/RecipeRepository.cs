@@ -28,20 +28,28 @@ transactionProvider, databaseProvider)
             return totalPrice;
         }*/
 
-        public double GetTotalPrice(Recipe recipe)
+        public async Task<double> GetTotalPrice(Recipe recipe)
         {
             List<Product> products = new List<Product>();
             Product product;
-            
+            double priceSum = 0.0;
+
             if (recipe.PZNs != null && this._productRepository != null)
             {
-                recipe.PZNs.ForEach(async p =>
+                /* recipe.PZNs.ForEach(async p =>
+                 {
+                     product = await _productRepository.GetByPzn(p);
+                     products.Add(product);  
+                 });*/
+                int[] pzns = recipe.PZNs.ToArray();
+                for (int i = 0; i < pzns.Length; i++)
                 {
-                    product = await _productRepository.GetByPzn(p);
-                    products.Add(product);  
-                });
+                    product = await _productRepository.GetByPzn(pzns[i]);
+                    priceSum += product.Price;
+                    products.Add(product);
+                }
             }
-            return products.Sum(p => p.Price);
+            return priceSum;
         }
     }
 }

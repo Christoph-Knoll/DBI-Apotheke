@@ -34,8 +34,11 @@ namespace DBI_Apotheke.Core.Workloads.Recipes
         public async Task<double> GetTotalPrice(ObjectId recipeId)
         {
             var recipe = await this.GetItemById(recipeId);
-
-            return this._repository.GetTotalPrice(recipe);
+            if (recipe == null)
+            {
+                return 0.0;
+            }
+            return await this._repository.GetTotalPrice(recipe);
         }
     }
 }
