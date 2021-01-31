@@ -34,7 +34,7 @@ export class AddRecipeComponent implements OnInit {
 
   createRecipe(): void {
     this.recipe.name = this.firstName + ' ' + this.lastName;
-    this.recipe.address = this.address + ',' + this.zipCode + ' ' + this.city;
+    this.recipe.address = this.address + ';' + this.zipCode + ';' + this.city;
     this.recipe.issuer = this.issuer;
     this.recipe.pzns = this.values;
     console.log(this.recipe);
