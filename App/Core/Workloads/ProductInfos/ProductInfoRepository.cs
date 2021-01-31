@@ -3,6 +3,7 @@ using LeoMongo.Database;
 using LeoMongo.Transaction;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
@@ -34,14 +35,19 @@ namespace DBI_Apotheke.Core.Workloads.ProductInfos
         }
 
 
-        public async Task<(ObjectId ItemId, List<ObjectId>? DetailIds)?> GetProductInfoWithProducts(ObjectId id)
+        public Task<(ObjectId ItemId, List<ObjectId>? DetailIds)?> GetProductInfoWithProducts(ObjectId id)
         {
-            return await GetItemWithDetails(id, p => p.ProductInfoId);
+            return GetItemWithDetails(id, p => p.ProductInfoId);
         }
 
         public async Task<IReadOnlyCollection<ProductInfo>> GetByName(string name)
         {
-            return await Query(x => x.Name.StartsWith(name));
+            // A better approach would be to query using a BsonRegex-Expression
+            // The Repository base would have to provide a Query(FilterDefinition<T> filter) function
+            
+            return (await Query().ToListAsync())
+                .Where(x => x.Name.StartsWith(name))
+                .ToImmutableList();
         }
         
     }

@@ -51,6 +51,7 @@ namespace DBI_Apotheke.Controllers
         /// <param name="name">name of ProductInfo</param>
         /// <returns>a ProductInfo</returns>
         [HttpGet]
+        [Route("name")]
         public async Task<ActionResult<IReadOnlyCollection<ProductInfoDTO>>> GetByName(string name)
         {
             IReadOnlyCollection<ProductInfo> productInfos;
