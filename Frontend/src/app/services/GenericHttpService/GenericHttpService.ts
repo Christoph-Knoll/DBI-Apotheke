@@ -12,7 +12,7 @@ export abstract class GenericHttpService<T, ID> implements HttpCrudOperations<T,
     ) {}
 
     get(id: ID): Observable<T> {
-        return this.http.get<T>(this.base + '/' + id);
+        return this.http.get<T>(this.base + '/?id=' + id);
     }
 
     getAll(): Observable<T[]> {
