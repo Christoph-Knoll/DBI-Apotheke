@@ -1,7 +1,50 @@
 = DBI - Apotheke
-:source-highlighter: highlightjs
 
-== Entities
+== Planning
+
+=== User Stories
+
+* Create recipe
+* Retrieve recipe including total price
+* See all available products
+* Get information to each product, including its ingredients and its storage locations
+
+=== Entities
+* ProductInfo
+* Ingredient
+* Product (pseudo foreign key to productInfo)
+* Storage
+
+=== Generics
+
+==== GenericRepository
+* GetAllItems
+* GetItemById
+* InsertItem
+* UpdateItem
+* DeleteItem
+* GetItemWithDetails (GenericMasterDetailReposiotry)
+
+==== Service Base
+Basic Service which uses the GenericRepositories functions.
+
+=== Additional Repository Methods
+
+==== ProductInfoRepository
+* GetByIngredient
+* GetProductInfoWithProducts
+
+==== ProductRepository
+* GetByPzn
+* GetAllProductsByProductInfo
+
+==== RecipeRepository
+* GetTotalPrice
+
+==== StorageRepository
+* GetByPzn
+
+== Entity Structure
 
 === ProductInfo
 [source, json]

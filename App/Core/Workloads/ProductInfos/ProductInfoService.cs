@@ -36,5 +36,8 @@ namespace DBI_Apotheke.Core.Workloads.ProductInfos
 
         public Task<(ObjectId ItemId, List<ObjectId>? DetailIds)?> GetProductInfoWithProducts(ObjectId id) => 
             _repository.GetProductInfoWithProducts(id);
+
+        public Task<IReadOnlyCollection<ProductInfo>> GetByName(string name) =>
+            _repository.GetByName(name);
     }
 }
