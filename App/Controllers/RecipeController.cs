@@ -34,24 +34,16 @@ namespace DBI_Apotheke.Controllers
         public async Task<ActionResult<RecipeDTO>> GetById(string id)
         {
             Recipe? recipe;
-            RecipeDTO? recipeDTO;
             if (string.IsNullOrWhiteSpace(id) ||
                 (recipe = await this._service.GetItemById(new ObjectId(id))) == null)
             {
                 return BadRequest();
             }
 
-            recipeDTO = new RecipeDTO
-            {
-                Address = recipe.Address,
-                Id = recipe.Id.ToString(),
-                Issuer = recipe.Issuer,
-                Name = recipe.Name,
-                PZNs = recipe.PZNs,
-                PriceSum = await this._service.GetTotalPrice(new ObjectId(id))
-            };
+            var recipeDTO = this._mapper.Map<RecipeDTO>(recipe);
+            recipeDTO.PriceSum = await _service.GetTotalPrice(recipe.Id);
 
-            return Ok(this._mapper.Map<RecipeDTO>(recipeDTO));
+            return Ok(recipeDTO);
         }
 
         /// <summary>
@@ -120,7 +112,7 @@ namespace DBI_Apotheke.Controllers
             using var transaction = await this._transactionProvider.BeginTransaction();
             var recipe = await this._service.InsertItem(request.Name, request.Address, request.Issuer, request.PZNs);
             await transaction.CommitAsync();
-            return Ok(recipe);
+            return Ok(this._mapper.Map<RecipeDTO>(recipe));
         }
 
     }

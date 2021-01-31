@@ -130,7 +130,7 @@ namespace DBI_Apotheke.Controllers
             using var transaction = await this._transactionProvider.BeginTransaction();
             var productInfo = await this._service.InsertItem(request.Name, request.Brand, request.Ingredients);
             await transaction.CommitAsync();
-            return Ok(productInfo);
+            return Ok(this._mapper.Map<ProductInfoDTO>(productInfo));
         }
     }
 }

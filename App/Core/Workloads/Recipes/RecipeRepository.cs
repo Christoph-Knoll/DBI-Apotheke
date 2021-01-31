@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper.Internal;
 
 namespace DBI_Apotheke.Core.Workloads.Recipes
 {
@@ -19,37 +20,21 @@ transactionProvider, databaseProvider)
             this._productRepository = productRepository;
         }
 
-        /*public Task<double> GetTotalPrice()
+        public async Task<double> GetTotalPrice(ObjectId id)
         {
-            double totalPrice = 0;
+            var recipe = await GetItemById(id);
 
-            products.ForEach(p => totalPrice += p.Price);
-
-            return totalPrice;
-        }*/
-
-        public async Task<double> GetTotalPrice(Recipe recipe)
-        {
-            List<Product> products = new List<Product>();
-            Product product;
-            double priceSum = 0.0;
-
-            if (recipe.PZNs != null && this._productRepository != null)
+            var sum = 0.0;
+            if (recipe?.PZNs != null)
             {
-                /* recipe.PZNs.ForEach(async p =>
-                 {
-                     product = await _productRepository.GetByPzn(p);
-                     products.Add(product);  
-                 });*/
-                int[] pzns = recipe.PZNs.ToArray();
-                for (int i = 0; i < pzns.Length; i++)
+                foreach (var pzn in recipe.PZNs)
                 {
-                    product = await _productRepository.GetByPzn(pzns[i]);
-                    priceSum += product.Price;
-                    products.Add(product);
+                    var product = await _productRepository.GetByPzn(pzn);
+                    
+                    sum += product == null ? 0 : product.Price * product.Amount;
                 }
             }
-            return priceSum;
+            return sum;
         }
     }
 }
