@@ -61,12 +61,12 @@
       <input class="input" style="width: 25vw; margin-left: 1vw;margin-bottom: 1vw;margin-top: -0.5vw" type="text" type="text" readonly value="{{currentProductInfo.brand}}">
       <p class="subtitle">Inhaltsstoffe: </p>
       <input *ngFor="let ingredient of currentProductInfo.ingredients"
-             class="input" style="width: 11vw;margin-left: 1vw;margin-bottom: 1vw;margin-top: -0.5vw" type="text"
+             class="input" style="width: 10vw;margin-left: 1vw;margin-bottom: 1vw;margin-top: -0.5vw" type="text"
              readonly value="{{ingredient.name}} - {{ingredient.amount}}{{unit[ingredient.unit]}}">
-      <div *ngIf="getStorageLocations(currentProductInfo.id).length != 0">
+      <div *ngIf="getStorageLocations().length != 0">
         <p class="subtitle">Gelagert in: </p>
-        <input *ngFor="let storage of getStorageLocations(currentProductInfo.id)"
-               class="input" style="width: 11vw;margin-left: 1vw;margin-bottom: 1vw;margin-top: -0.5vw" type="text"
+        <input *ngFor="let storage of getStorageLocations()"
+               class="input" style="width: 10vw;margin-left: 1vw;margin-bottom: 1vw;margin-top: -0.5vw" type="text"
                readonly value="{{storage.storageSite}}">
       </div>
     </section>
