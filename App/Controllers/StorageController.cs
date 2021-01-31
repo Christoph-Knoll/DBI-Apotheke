@@ -103,7 +103,7 @@ namespace DBI_Apotheke.Controllers
             using var transaction = await this._transactionProvider.BeginTransaction();
             var storage = await this._service.InsertItem(request.PZN, request.Amount, request.StorageSite);
             await transaction.CommitAsync();
-            return Ok(storage);
+            return Ok(_service.GetItemById(storage.Id));
         }
     }
 }

@@ -10,8 +10,7 @@ namespace DBI_Apotheke.Core.Workloads.Recipes
 {
     public interface IRecipeRepository: IGenericRepository<Recipe>
     {
-        //double GetTotalPrice(List<Product> products);
-        Task<double> GetTotalPrice(Recipe recipe);
+        Task<double> GetTotalPrice(ObjectId id);
     }
 
 }
