@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {RecipeService} from '../services/recipe.service';
 import {IRecipe} from '../contracts/IRecipe';
 
@@ -17,6 +17,7 @@ export class AddRecipeComponent implements OnInit {
   city: string;
   issuer: string;
   recipe: IRecipe = {} as IRecipe;
+  returnedRecipe: IRecipe;
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void {
@@ -32,16 +33,20 @@ export class AddRecipeComponent implements OnInit {
   }
 
 
-  createRecipe(): void {
+  async createRecipe(): Promise<void> {
+
     this.recipe.name = this.firstName + ' ' + this.lastName;
     this.recipe.address = this.address + ';' + this.zipCode + ';' + this.city;
     this.recipe.issuer = this.issuer;
     this.recipe.pzns = this.values;
-    console.log(this.recipe);
-    this.recipeService.save(this.recipe).toPromise();
+    this.returnedRecipe = await this.recipeService.save(this.recipe).toPromise();
+    window.location.reload()
+    console.log(this.returnedRecipe.id)
+    window.alert("Ihr Rezept wurde mit der Id: "+ this.returnedRecipe.id +" erstellt.")
     }
 
   customTrackBy(index: number, obj: any): any {
     return index;
   }
+
 }
