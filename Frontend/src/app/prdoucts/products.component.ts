@@ -15,7 +15,7 @@ import {IIngredient, Unit} from '../contracts/IIngredient';
 })
 export class ProductsComponent implements OnInit {
 
-
+/*
   //region TestData
   products: IProduct[] = [
     {
@@ -23,26 +23,26 @@ export class ProductsComponent implements OnInit {
       price: 1.20,
       amount: 300,
       unit: Unit.Stk,
-      productInfoId: 1,
+      productInfoId: '0',
     },
     {
       pzn: 2,
       price: 1.20,
       amount: 150,
       unit: Unit.mg,
-      productInfoId: 1,
+      productInfoId: '0',
     },
     {
       pzn: 3,
       price: 25,
       amount: 222,
       unit: Unit.mg,
-      productInfoId: 2,
+      productInfoId: '1',
     },
   ];
   productInfos: IProductInfo[] = [
     {
-      id: 1,
+      id: '0',
       name: 'Aspirin Complex',
       brand: 'Aspirin',
       state: State.Solid,
@@ -60,7 +60,7 @@ export class ProductsComponent implements OnInit {
       ]
     },
     {
-      id: 2,
+      id: '1',
       name: 'Aspirin Easy',
       brand: 'Aspirin',
       state: State.Solid,
@@ -85,51 +85,53 @@ export class ProductsComponent implements OnInit {
   ];
   storage: IStorage[] = [
     {
+      id: '0',
       pzn: 1,
       amount: 10,
       storageSite: 'Linz',
     },
     {
+      id: '1',
       pzn: 1,
       amount: 3,
       storageSite: 'Wels',
     },
     {
+      id: '2',
       pzn: 2,
       amount: 0,
       storageSite: 'Leonding',
     },
     {
+      id: '3',
       pzn: 3,
       amount: 12,
       storageSite: 'Linz',
     }
   ];
   //endregion
-
+*/
   //region Code for Data from DB
-  /*products: IProduct[];
+  products: IProduct[];
   productInfos: IProductInfo[];
-  storage: IStorage[];*/
+  storage: IStorage[];
   //endregion
   modalIsOpened: boolean;
-  currentProductInfo: IProductInfo;
-  currentProduct: IProduct;
+  currentProductInfo: IProductInfo = {} as IProductInfo;
+  currentProduct: IProduct = {} as IProduct;
 
   constructor(private productService: ProductService,
               private productInfoService: ProductInfoService,
               private storageService: StorageService) { }
 
   async ngOnInit(): Promise<void> {
-    /*this.products = await this.productService.getAll().toPromise();
+    this.products = await this.productService.getAll().toPromise();
     this.productInfos = await this.productInfoService.getAll().toPromise();
-    this.storage = await this.storageService.getAll().toPromise();*/
+    this.storage = await this.storageService.getAll().toPromise();
     this.modalIsOpened = false;
-    this.currentProductInfo = this.getProductInfoById(1);
-    this.currentProduct = this.products[this.products.length - 1];
   }
 
-  getProductInfoById(productInfoId: number): IProductInfo {
+  getProductInfoById(productInfoId: string): IProductInfo {
     return this.productInfos.find(i => i.id === productInfoId);
   }
 
@@ -147,7 +149,7 @@ export class ProductsComponent implements OnInit {
     return Unit;
   }
 
-  async onProductInfoClick(productInfoId: number, product: IProduct): Promise<void> {
+  async onProductInfoClick(productInfoId: string, product: IProduct): Promise<void> {
     this.currentProduct = product;
     this.currentProductInfo = this.getProductInfoById(productInfoId);
     this.modalIsOpened = true;
@@ -157,7 +159,7 @@ export class ProductsComponent implements OnInit {
     this.modalIsOpened = false;
   }
 
-  getStorageLocations(productInfoId: number): IStorage[] {
+  getStorageLocations(): IStorage[] {
     const storages: IStorage[] = [];
     const storage = this.storage.filter(s => this.currentProduct.pzn === s.pzn);
     storage.filter(s => {
