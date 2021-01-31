@@ -8,7 +8,6 @@ import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RedeemRecipeComponent } from './redeem-recipe/redeem-recipe.component';
 import { ProductsComponent } from './prdoucts/products.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,7 +18,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AddRecipeComponent,
     RedeemRecipeComponent,
     ProductsComponent,
-    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

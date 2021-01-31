@@ -7,7 +7,7 @@ import {IRecipe} from '../contracts/IRecipe';
 @Injectable({
   providedIn: 'root'
 })
-export class RecipeService extends GenericHttpService<IRecipe, number> {
+export class RecipeService extends GenericHttpService<IRecipe, string> {
 
   constructor(protected http: HttpClient) {
     super(http, `${environment.api.baseUrl}/Recipe`);

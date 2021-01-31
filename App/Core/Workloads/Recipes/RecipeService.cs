@@ -1,6 +1,7 @@
 ﻿using DBI_Apotheke.Core.Util;
 using DBI_Apotheke.Core.Workloads.Generics;
 using DBI_Apotheke.Core.Workloads.Products;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,15 @@ namespace DBI_Apotheke.Core.Workloads.Recipes
             };
 
             return this._repository.InsertItem(recipe);
+        }
+        public async Task<double> GetTotalPrice(ObjectId recipeId)
+        {
+            var recipe = await this.GetItemById(recipeId);
+            if (recipe == null)
+            {
+                return 0.0;
+            }
+            return await this._repository.GetTotalPrice(recipe);
         }
     }
 }

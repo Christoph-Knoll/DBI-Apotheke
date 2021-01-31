@@ -34,13 +34,24 @@ namespace DBI_Apotheke.Controllers
         public async Task<ActionResult<RecipeDTO>> GetById(string id)
         {
             Recipe? recipe;
+            RecipeDTO? recipeDTO;
             if (string.IsNullOrWhiteSpace(id) ||
                 (recipe = await this._service.GetItemById(new ObjectId(id))) == null)
             {
                 return BadRequest();
             }
 
-            return Ok(this._mapper.Map<Recipe>(recipe));
+            recipeDTO = new RecipeDTO
+            {
+                Address = recipe.Address,
+                Id = recipe.Id.ToString(),
+                Issuer = recipe.Issuer,
+                Name = recipe.Name,
+                PZNs = recipe.PZNs,
+                PriceSum = await this._service.GetTotalPrice(new ObjectId(id))
+            };
+
+            return Ok(this._mapper.Map<RecipeDTO>(recipeDTO));
         }
 
         /// <summary>
@@ -52,7 +63,26 @@ namespace DBI_Apotheke.Controllers
         public async Task<ActionResult<IReadOnlyCollection<RecipeDTO>>> GetAll()
         {
             IReadOnlyCollection<Recipe> recipes = await this._service.GetAllItems();
-            return Ok(this._mapper.Map<List<RecipeDTO>>(recipes));
+            RecipeDTO? recipeDTO;
+
+            List<RecipeDTO>? recipesDTO = new List<RecipeDTO>();
+            foreach (var item in recipes)
+            {
+                recipeDTO = new RecipeDTO
+                {
+                    Address = item.Address,
+                    Id = item.Id.ToString(),
+                    Issuer = item.Issuer,
+                    Name = item.Name,
+                    PZNs = item.PZNs,
+                    PriceSum = await this._service.GetTotalPrice(item.Id)
+                };
+                if (recipeDTO != null)
+                {
+                    recipesDTO.Add(recipeDTO);
+                }
+            }
+            return Ok(this._mapper.Map<List<RecipeDTO>>(recipesDTO));
         }
 
         /// <summary>
