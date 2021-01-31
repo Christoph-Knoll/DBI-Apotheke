@@ -1,6 +1,7 @@
 ﻿using DBI_Apotheke.Core.Workloads.Generics;
 using DBI_Apotheke.Core.Workloads.Modules;
 using DBI_Apotheke.Core.Workloads.Products;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace DBI_Apotheke.Core.Workloads.Recipes
     public interface IRecipeService : IServiceBase<Recipe>
     {
         Task<Recipe> InsertItem(string name, string address, string issuer, List<int> pzns);
+        Task<double> GetTotalPrice(ObjectId recipeId);
     }
 }
