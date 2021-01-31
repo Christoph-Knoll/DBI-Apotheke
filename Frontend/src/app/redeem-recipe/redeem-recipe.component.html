@@ -1,1 +1,78 @@
-<p>redeem-recipe works!</p>
+<div style="display: flex;">
+  <div style="margin: 2.5vw">
+    <p class="subtitle">Rezept Nummer eingeben:</p>
+    <input class="input" [ngClass]="{'is-danger': foundRecipe === false}" style="width: 25vw" type="text" placeholder="Geben Sie die Identifikationsnummer ihres Rezeptes hier ein" [(ngModel)]="recipeId">
+    <button (click)="onSearch()" class="button" style="width: 5vw; margin-left: 1vw">Suchen</button>
+  </div>
+
+  <article class="message is-danger " [ngClass]="{'is-invisible': foundRecipe !== false}" style="width: 25vw; height: 5vw; margin-top: 1vw">
+    <div class="message-header">
+      <p>Rezept ID nicht gefunden</p>
+      <button class="delete" aria-label="delete"></button>
+    </div>
+    <div class="message-body">
+      Die Rezept Identifikationsnummer konnte nicht gefunden werden<br>
+      Haben Sie sich vertippt?
+    </div>
+  </article>
+</div>
+
+<div style="margin: 2.5vw">
+  <div *ngIf="foundRecipe === true" style="display:flex">
+    <div>
+      <p class="subtitle">Kundeninformationen</p>
+      <div style="margin: 1vw">
+        <label>
+          <input class="input" style="width: 25vw" type="text" placeholder="Name" disabled [ngModel]="this.recipe.name">
+        </label>
+      </div>
+      <div style="margin: 1vw">
+        <input class="input" style="width: 31vw" type="text" placeholder="Addresse" disabled [ngModel]="address[0]">
+      </div>
+      <div style="margin: 1vw">
+        <input class="input" style="width: 9vw" type="text" placeholder="PLZ" disabled [ngModel]="address[1]">
+        <input class="input" style="width: 21vw; margin-left: 1vw"  type="text" placeholder="Stadt" disabled [ngModel]="address[2]">
+      </div>
+      <p class="subtitle" style="margin: 1vw">Ausstellender Arzt</p>
+      <div style="margin: 1vw">
+        <input class="input" style="width: 31vw" type="text" placeholder="Ausstellender Arzt" disabled [ngModel]="this.recipe.issuer">
+      </div>
+    </div>
+    <div>
+      <p class="subtitle">Produkte</p>
+      <table class="table is-striped is-hoverable" style="margin: 2vw; width: 50vw">
+        <thead>
+        <tr>
+          <th><abbr title="Pharmazentralnummer">PZN</abbr></th>
+          <th>Produktname</th>
+          <th>Brand</th>
+          <th>Inhalt</th>
+          <th>Preis</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let product of productsFiltered">
+          <tr>
+            <td>{{product.pzn}}</td>
+            <td>{{getProductInfoById(product.productInfoId).name}}</td>
+            <td>{{getProductInfoById(product.productInfoId).brand}}</td>
+            <td>{{product.amount + unit[product.unit]}}</td>
+            <td>{{product.price |currency: 'EUR'}}</td>
+          </tr>
+        </ng-container>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Gesamtkosten: </td>
+            <td>{{recipe.priceSum|currency: 'EUR'}}</td>
+            <td><button class="button is-primary">Einlösen</button> </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
