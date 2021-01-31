@@ -32,8 +32,14 @@ export class RedeemRecipeComponent implements OnInit {
   }
 
   async onSearch(): Promise<void> {
-    this.recipe = (await this.recipeServices.getAll().toPromise())[1];
-    this.foundRecipe = this.recipe !== undefined;
+    try {
+      this.recipe = await this.recipeServices.get(this.recipeId).toPromise();
+      this.foundRecipe = this.recipe !== undefined;
+    }
+    catch (e){
+      this.foundRecipe = false;
+    }
+
     if (this.foundRecipe) {
       this.address = this.recipe.address.split(';');
       this.products = await this.productService.getAll().toPromise();
@@ -49,7 +55,7 @@ export class RedeemRecipeComponent implements OnInit {
 
 
   // @ts-ignore
-  async getProductInfoById(productInfoId: number): IProductInfo {
+  async getProductInfoById(productInfoId: string): IProductInfo {
     return this.currentProductInfo = await this.productInfoService.get(productInfoId).toPromise() as IProductInfo;
   }
 
