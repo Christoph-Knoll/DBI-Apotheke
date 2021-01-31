@@ -118,9 +118,9 @@ namespace DBI_Apotheke.Controllers
             }
 
             using var transaction = await this._transactionProvider.BeginTransaction();
-            var productInfo = await this._service.InsertItem(request.Name, request.Address, request.Issuer, request.PZNs);
+            var recipe = await this._service.InsertItem(request.Name, request.Address, request.Issuer, request.PZNs);
             await transaction.CommitAsync();
-            return CreatedAtAction(nameof(GetById), new { id = productInfo.Id.ToString() }, productInfo);
+            return Ok(recipe);
         }
 
     }
