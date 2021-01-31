@@ -9,5 +9,8 @@ namespace DBI_Apotheke.Core.Workloads.Storages
     public interface IStorageService: IServiceBase<Storage>
     {
         Task<Storage> InsertItem(int pzn, int amount, string storageSite);
+        
+        Task<Storage> GetByPzn(int pzn);
+
     }
 }

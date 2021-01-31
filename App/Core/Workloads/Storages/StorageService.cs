@@ -30,5 +30,7 @@ namespace DBI_Apotheke.Core.Workloads.Storages
 
             return this._repository.InsertItem(storage);
         }
+
+        public Task<Storage> GetByPzn(int pzn) => _repository.GetByPzn(pzn);
     }
 }

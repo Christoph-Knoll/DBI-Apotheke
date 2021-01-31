@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {HttpCrudOperations} from './HttpCrudOperations';
+import { ControlContainer } from '@angular/forms';
 
 
 export abstract class GenericHttpService<T, ID> implements HttpCrudOperations<T, ID> {
@@ -19,7 +20,6 @@ export abstract class GenericHttpService<T, ID> implements HttpCrudOperations<T,
     }
 
     save(t: T): Observable<T> {
-      console.log(this.base);
       return this.http.post<T>(this.base, t);
     }
 

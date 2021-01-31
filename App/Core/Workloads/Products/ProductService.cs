@@ -2,6 +2,7 @@
 using DBI_Apotheke.Core.Workloads.Generics;
 using DBI_Apotheke.Core.Workloads.Modules;
 using DBI_Apotheke.Core.Workloads.ProductInfos;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,13 @@ namespace DBI_Apotheke.Core.Workloads.Products
             };
 
             return this._repository.InsertItem(product);
+        }
+        
+        public Task<Product> GetByPzn(int pzn) => _repository.GetByPzn(pzn);
+
+        public Task<IReadOnlyCollection<Product>> GetAllProductsByProductInfo(ObjectId productInfoId)
+        {
+            return this._repository.GetAllProductsByProductInfo(productInfoId);
         }
     }
 }

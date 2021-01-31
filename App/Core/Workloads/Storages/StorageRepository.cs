@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MongoDB.Driver.Linq;
 
 namespace DBI_Apotheke.Core.Workloads.Storages
 {
@@ -13,6 +14,11 @@ namespace DBI_Apotheke.Core.Workloads.Storages
         public StorageRepository(ITransactionProvider transactionProvider, IDatabaseProvider databaseProvider) : base(
 transactionProvider, databaseProvider)
         {
+        }
+        
+        public Task<Storage> GetByPzn(int pzn)
+        {
+            return this.Query().SingleOrDefaultAsync(x => x.PZN == pzn);
         }
     }
 }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 
 namespace DBI_Apotheke.Core.Workloads.ProductInfos
 {
@@ -29,5 +30,11 @@ namespace DBI_Apotheke.Core.Workloads.ProductInfos
 
             return this._repository.InsertItem(productInfo);
         }
+
+        public Task<IReadOnlyCollection<ProductInfo>> GetByIngredient(string ingredientName) =>
+            _repository.GetByIngredient(ingredientName);
+
+        public Task<(ObjectId ItemId, List<ObjectId>? DetailIds)?> GetProductInfoWithProducts(ObjectId id) => 
+            _repository.GetProductInfoWithProducts(id);
     }
 }

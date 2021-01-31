@@ -8,5 +8,6 @@ namespace DBI_Apotheke.Core.Workloads.Storages
 {
     public interface IStorageRepository: IGenericRepository<Storage>
     {
+        Task<Storage> GetByPzn(int pzn);
     }
 }
