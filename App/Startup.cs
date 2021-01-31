@@ -35,9 +35,10 @@ namespace App
             
             
             var collection = databaseProvider.Database.GetCollection<Product>(MongoUtil.GetCollectionName<Product>());
+            var options = new CreateIndexOptions() {Unique = true};
             
             var indexKeysDefinition = Builders<Product>.IndexKeys.Ascending(p => p.PZN);
-            await collection.Indexes.CreateOneAsync(new CreateIndexModel<Product>(indexKeysDefinition));
+            await collection.Indexes.CreateOneAsync(new CreateIndexModel<Product>(indexKeysDefinition, options));
 
             await session.CommitTransactionAsync();
         }
