@@ -3,4 +3,5 @@ export interface IRecipe{
   address: string;
   issuer: string;
   pzns: number[];
+  priceSum: number;
 }
